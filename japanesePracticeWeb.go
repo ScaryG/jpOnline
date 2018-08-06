@@ -132,7 +132,7 @@ func main() {
 func (db *wordDb) PopulateWordDatabase(jp japanesePracticeWeb) bool {
 
 	var numSheets int
-	jp.sheetsService, numSheets = SheetsSetup(jp.settings.GoogleSheetID)
+	jp.sheetsService, numSheets = SheetsSetupJWT(jp.settings.GoogleSheetID)
 
 	db.wordData = make([]WordData, 0)
 	db.verbPolitenessData = make([]string, 0)
