@@ -7,6 +7,7 @@ import (
 	"math/rand"
 	"net/http"
 	"net/url"
+	"os"
 	"strconv"
 	"time"
 
@@ -124,9 +125,17 @@ func main() {
 	http.HandleFunc("/controls", WordTypeSelected)
 	//http.HandleFunc("/runtest", RunTest)
 
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(getPort(), nil))
 
 	// runtime.Goexit()
+}
+
+func getPort() string {
+	p := os.Getenv("PORT")
+	if p != "" {
+		return ":" + p
+	}
+	return ":8080"
 }
 
 func (db *wordDb) PopulateWordDatabase(jp japanesePracticeWeb) bool {
