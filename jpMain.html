@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+<title>{{.PageTitle}}</title>
+
+<style>
+  body { background-color: #ebebeb }
+  h1 { font-size: 48pt; font-weight: bold; text-align: center; margin: 16px }
+  h2 { font-size: 24pt; font-weight: bold; text-align: center; margin-bottom: 4px; margin-top: 16px }
+  h3 { font-size: 14pt; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px }
+  h4 { font-size: 12pt; font-style: italic; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative }
+  j1 { font-size: 24pt; font-weight: bold; text-align: center }
+  j2 { font-size: 32pt; font-weight: bold; text-align: center; padding-bottom: 24px; margin-top: 16px; color: mediumblue }
+  #wordSpan0 { font-size: 14pt; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px }
+  #wordSpan1 { font-size: 14pt; font-weight: bold; text-align: center; margin-top: 0px; padding-top: 0px; position: relative }
+  #buttonParentBox { text-align: center; position: relative; min-height: 300px; width: 80%; background: white; display: inline-block; padding: 0px}
+  #buttonBox { text-align: center }
+  .optionBoxParent { text-align: center }
+  .optionBox { width: 80%; background: white; display: inline-block; text-align: left; padding: 16px; padding-top: 0px; border-style:solid; border-color: #ebebeb; border-width: 1px }
+  .testBox { width: 80%; background: white; display: inline-block; text-align: center; padding: 16px; border-style:solid; border-color: #ebebeb; border-width: 1px; white-space: nowrap }
+  .button1 { width: 50%; height: 50px; background:radial-gradient(white, lightyellow); font-size: 16pt; font-weight: bold }
+  .button2 { width: 25%; height: 50px; position: absolute; top: 230px; left: 0; right: 0; margin: auto}
+</style>
+</head>
+
+<script type='text/javascript'>
+ $(document).ready(function() {
+   $('input[name=wordVerb]').change(function(){
+     $('form').submit();
+   });
+
+   $('input[name=wordAdjective]').change(function(){
+     $('form').submit();
+   });
+
+   $('input[name=runTest]').click(function(){
+     $('<input>').attr('type', 'hidden').attr('name', 'runTest').attr('value', 'runTest').appendTo('form');
+     $('form').submit();
+    });
+
+   $('input[name=checkAllWordTypes]').click(function(){
+    {{with $1:=.WordOptionButtons}}
+      {{range $1}}
+        $('input[name={{.Name}}]').prop('checked', true);
+      {{end}}
+    {{end}}
+   });
+   
+   $('input[name=checkAllVerbPoliteness]').click(function(){
+    {{with $1:=.PolitenessOptionButtons}}
+      {{range $1}}
+        $('input[name={{.Name}}]').prop('checked', true);
+      {{end}}
+    {{end}}
+   });
+
+   $('input[name=checkAllVerbForms]').click(function(){
+    {{with $1:=.FormOptionButtons}}
+      {{range $1}}
+        $('input[name={{.Name}}]').prop('checked', true);
+      {{end}}
+    {{end}}
+   });
+
+   $('input[name=uncheckAllWordTypes]').click(function(){
+    {{with $1:=.WordOptionButtons}}
+      {{range $1}}
+        $('input[name={{.Name}}]').prop('checked', false);
+      {{end}}
+    {{end}}
+   });
+
+   $('input[name=uncheckAllVerbPoliteness]').click(function(){
+    {{with $1:=.PolitenessOptionButtons}}
+      {{range $1}}
+        $('input[name={{.Name}}]').prop('checked', false);
+      {{end}}
+    {{end}}
+   });
+
+   $('input[name=uncheckAllVerbForms]').click(function(){
+    {{with $1:=.FormOptionButtons}}
+      {{range $1}}
+        $('input[name={{.Name}}]').prop('checked', false);
+      {{end}}
+    {{end}}
+   });
+});
+</script>
+
+<body>
+  <h1>Japanese Vocab Practice</h1>
+
+  <div class="testControls">
+    <form action="/controls" method="post">
+      {{with $1:=.WordOptionButtons}}
+        <div class="optionBoxParent"><div class="optionBox">
+            <p><b>Word Types:</b></p>
+            <input type="button" name="uncheckAllWordTypes" value="Uncheck All">
+            <input type="button" name="checkAllWordTypes" value="Check All">
+            {{range $1}}
+              <input type="checkbox" name={{.Name}} value={{.Value}} {{if .IsDisabled}} disabled=true {{end}} {{if .IsChecked}} checked{{end}}> {{.Text}}
+            {{end}}
+          </div>
+        </div>
+      {{end}}
+      
+      {{with $2:=.PolitenessOptionButtons}}
+        <div class="optionBoxParent"><div class="optionBox">
+            <p><b>Verb Politeness Level:</b></p>
+            <input type="button" name="uncheckAllVerbPoliteness" value="Uncheck All">
+            <input type="button" name="checkAllVerbPoliteness" value="Check All">
+            {{range $2}}
+              <input type="checkbox" name={{.Name}} value={{.Value}} {{if .IsDisabled}} disabled=true {{end}} {{if .IsChecked}} checked{{end}}> {{.Text}}
+            {{end}}
+          </div>
+        </div>
+      {{end}}
+
+      {{with $3:=.FormOptionButtons}}
+        <div class="optionBoxParent"><div class="optionBox">
+            <p><b>Verb Form:</b></p>
+            <input type="button" name="uncheckAllVerbForms" value="Uncheck All">
+            <input type="button" name="checkAllVerbForms" value="Check All">
+            {{range $3}}
+              <input type="checkbox" name={{.Name}} value={{.Value}} {{if .IsDisabled}} disabled=true {{end}} {{if .IsChecked}} checked{{end}}> {{.Text}}
+            {{end}}
+          </div>
+        </div>
+      {{end}}
+
+    </form>
+  </div>
+
+  <br>
+  <br>
+
+  <div id="buttonBox">
+    <input type="button" value="Start/Restart Test" name="runTest" class="button1">
+  </div>
+
+  <br>
+  <br>
+
+  <div class="optionBoxParent"><div class="Test" id="buttonParentBox">
+      <script>
+        var wordData = {{.TestWords}}
+        var formData = {{.TestForms}}
+        var index = -1;
+
+        function removeElement(elementId) {
+
+          var item = document.getElementById(elementId);
+          if (item != null) {
+              item.parentNode.removeChild(item);
+          }
+        }
+
+        function ShowWord() {
+
+              index++;
+
+              removeElement("answerDiv");
+              removeElement("englishText");
+              removeElement("formText");
+
+              var parentDiv = document.getElementById("buttonParentBox");
+
+              var wordText = document.createElement("h2");
+              wordText.id = "englishText";
+
+              if (wordData[index].WordType == 0)
+              {
+                  wordText.textContent = "To ";
+              }
+
+              wordText.textContent += wordData[index].English;
+              parentDiv.appendChild(wordText);
+
+              var formText = document.createElement("h3");
+              formText.id = "formText";
+              formText.textContent += formData[index];
+              parentDiv.appendChild(formText);
+
+              var button = document.createElement("input");
+              button.type = "button";
+              button.id = "getAnswerButton"
+              button.value = "Get answer";
+              button.classList.add("button2");
+              button.onclick = Answer;
+
+              var div = document.createElement("div");
+              div.id = "buttonBox";
+              div.appendChild(button);
+              parentDiv.appendChild(div);
+        }
+
+        function Answer() {
+            
+            var parentDiv = document.getElementById("buttonParentBox");
+
+            removeElement("getAnswerButton");
+
+            var containerDiv = document.createElement("div");
+            containerDiv.id = "answerDiv";
+
+            var wordText = document.createElement("j2");
+            wordText.id = "japaneseTextAnswer";
+            wordText.textContent = wordData[index].TestAnswer;
+            containerDiv.appendChild(wordText);
+
+            var wordSpan0 = document.createElement("span");
+            wordSpan0.id = "wordSpan0";
+
+            var lbr = document.createElement("br");
+            wordSpan0.appendChild(lbr);
+
+            var wordText2 = document.createTextNode("Base verb: ");
+            wordText2.id = "japaneseTextBaseVerb";
+            wordSpan0.appendChild(wordText2);
+            containerDiv.appendChild(wordSpan0);
+
+            var wordSpan1 = document.createElement("span");
+            wordSpan1.id = "wordSpan1";
+            
+            var wordText2a = document.createTextNode(wordData[index].Japanese);
+            wordText2a.id = "japaneseTextBaseVerb2";
+            wordSpan1.appendChild(wordText2a);
+            containerDiv.appendChild(wordSpan1);
+
+            var wordText3 = document.createElement("h4");
+            wordText3.id = "japaneseTextBaseVerbSubtype";
+            wordText3.textContent = "(" + wordData[index].Subtype + " verb" + ")";
+            containerDiv.appendChild(wordText3);
+
+            var button = document.createElement("input");
+            button.type = "button";
+            button.id = "nextButton";
+            button.value = "Next";
+            button.classList.add("button2");
+            button.onclick = ShowWord;
+
+            var div = document.createElement("div");
+            div.id = "buttonBox";
+            div.appendChild(button);
+            containerDiv.appendChild(div);
+
+            parentDiv.appendChild(containerDiv);
+        }
+
+        ShowWord(index);
+      </script>
+  </div>
+</div>
+
+</body>
+</html>
