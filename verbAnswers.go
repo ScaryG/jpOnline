@@ -30,31 +30,31 @@ func addVerbSuffix(inputString string, outputString *string, numRunesToRemove in
 	}
 }
 
-func createAruIruAnswer(wordInfo *WordData, politeness string, formData verbFormData) {
+func createAruIruAnswer(wordInfo *WordData, inputString string, politeness string, formData verbFormData) {
 
 	switch formData.form {
 
 	case present:
 		if politeness == polite {
-			if wordInfo.Japanese == "ある" {
+			if inputString == "ある" {
 				wordInfo.TestAnswer = "あります"
 			} else {
 				wordInfo.TestAnswer = "います"
 			}
 		} else if politeness == casual {
-			wordInfo.TestAnswer = wordInfo.Japanese
+			wordInfo.TestAnswer = inputString
 		}
 		break
 
 	case presentNegative:
 		if politeness == polite {
-			if wordInfo.Japanese == "ある" {
+			if inputString == "ある" {
 				wordInfo.TestAnswer = "ありません"
 			} else {
 				wordInfo.TestAnswer = "いません"
 			}
 		} else if politeness == casual {
-			if wordInfo.Japanese == "ある" {
+			if inputString == "ある" {
 				wordInfo.TestAnswer = "ない"
 			} else {
 				wordInfo.TestAnswer = "いない"
@@ -64,13 +64,13 @@ func createAruIruAnswer(wordInfo *WordData, politeness string, formData verbForm
 
 	case past:
 		if politeness == polite {
-			if wordInfo.Japanese == "ある" {
+			if inputString == "ある" {
 				wordInfo.TestAnswer = "ありました"
 			} else {
 				wordInfo.TestAnswer = "いました"
 			}
 		} else if politeness == casual {
-			if wordInfo.Japanese == "ある" {
+			if inputString == "ある" {
 				wordInfo.TestAnswer = "あった"
 			} else {
 				wordInfo.TestAnswer = "いた"
@@ -80,13 +80,13 @@ func createAruIruAnswer(wordInfo *WordData, politeness string, formData verbForm
 
 	case pastNegative:
 		if politeness == polite {
-			if wordInfo.Japanese == "ある" {
+			if inputString == "ある" {
 				wordInfo.TestAnswer = "ありませんでした"
 			} else {
 				wordInfo.TestAnswer = "いませんでした"
 			}
 		} else if politeness == casual {
-			if wordInfo.Japanese == "ある" {
+			if inputString == "ある" {
 				wordInfo.TestAnswer = "なかった"
 			} else {
 				wordInfo.TestAnswer = "いなかった"
@@ -95,7 +95,7 @@ func createAruIruAnswer(wordInfo *WordData, politeness string, formData verbForm
 		break
 
 	case te:
-		if wordInfo.Japanese == "ある" {
+		if inputString == "ある" {
 			wordInfo.TestAnswer = "あって"
 		} else {
 			wordInfo.TestAnswer = "いて"
@@ -103,7 +103,7 @@ func createAruIruAnswer(wordInfo *WordData, politeness string, formData verbForm
 		break
 
 	case potential:
-		if wordInfo.Japanese == "ある" {
+		if inputString == "ある" {
 			wordInfo.TestAnswer = "あれる"
 		} else {
 			wordInfo.TestAnswer = "いられる"
@@ -112,13 +112,13 @@ func createAruIruAnswer(wordInfo *WordData, politeness string, formData verbForm
 
 	case volitional:
 		if politeness == polite {
-			if wordInfo.Japanese == "ある" {
+			if inputString == "ある" {
 				wordInfo.TestAnswer = "ありましょう"
 			} else {
 				wordInfo.TestAnswer = "いましょう"
 			}
 		} else if politeness == casual {
-			if wordInfo.Japanese == "ある" {
+			if inputString == "ある" {
 				wordInfo.TestAnswer = "あろう"
 			} else {
 				wordInfo.TestAnswer = "いよう"
@@ -127,7 +127,7 @@ func createAruIruAnswer(wordInfo *WordData, politeness string, formData verbForm
 		break
 
 	case want:
-		if wordInfo.Japanese == "ある" {
+		if inputString == "ある" {
 			wordInfo.TestAnswer = "ありたい"
 		} else {
 			wordInfo.TestAnswer = "いたい"
@@ -140,7 +140,7 @@ func createAruIruAnswer(wordInfo *WordData, politeness string, formData verbForm
 	}
 }
 
-func createKuruAnswer(wordInfo *WordData, politeness string, formData verbFormData) {
+func createKuruAnswer(wordInfo *WordData, inputString string, politeness string, formData verbFormData) {
 
 	switch formData.form {
 
@@ -148,7 +148,7 @@ func createKuruAnswer(wordInfo *WordData, politeness string, formData verbFormDa
 		if politeness == polite {
 			wordInfo.TestAnswer = "きます"
 		} else if politeness == casual {
-			wordInfo.TestAnswer = wordInfo.Japanese
+			wordInfo.TestAnswer = inputString
 		}
 		break
 
@@ -202,7 +202,7 @@ func createKuruAnswer(wordInfo *WordData, politeness string, formData verbFormDa
 	}
 }
 
-func createIkuAnswer(wordInfo *WordData, politeness string, formData verbFormData) {
+func createIkuAnswer(wordInfo *WordData, inputString string, politeness string, formData verbFormData) {
 
 	switch formData.form {
 
@@ -210,7 +210,7 @@ func createIkuAnswer(wordInfo *WordData, politeness string, formData verbFormDat
 		if politeness == polite {
 			wordInfo.TestAnswer = "いきます"
 		} else if politeness == casual {
-			wordInfo.TestAnswer = wordInfo.Japanese
+			wordInfo.TestAnswer = inputString
 		}
 		break
 
@@ -264,60 +264,60 @@ func createIkuAnswer(wordInfo *WordData, politeness string, formData verbFormDat
 	}
 }
 
-func createSuruAnswer(wordInfo *WordData, politeness string, formData verbFormData) {
+func createSuruAnswer(wordInfo *WordData, inputString string, politeness string, formData verbFormData) {
 
 	switch formData.form {
 
 	case present:
 		if politeness == polite {
-			addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 2, "します")
+			addVerbSuffix(inputString, &wordInfo.TestAnswer, 2, "します")
 		} else if politeness == casual {
-			wordInfo.TestAnswer = wordInfo.Japanese
+			wordInfo.TestAnswer = inputString
 		}
 		break
 
 	case presentNegative:
 		if politeness == polite {
-			addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 2, "しません")
+			addVerbSuffix(inputString, &wordInfo.TestAnswer, 2, "しません")
 		} else if politeness == casual {
-			addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 2, "しない")
+			addVerbSuffix(inputString, &wordInfo.TestAnswer, 2, "しない")
 		}
 		break
 
 	case past:
 		if politeness == polite {
-			addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 2, "しました")
+			addVerbSuffix(inputString, &wordInfo.TestAnswer, 2, "しました")
 		} else if politeness == casual {
-			addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 2, "した")
+			addVerbSuffix(inputString, &wordInfo.TestAnswer, 2, "した")
 		}
 		break
 
 	case pastNegative:
 		if politeness == polite {
-			addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 2, "しませんでした")
+			addVerbSuffix(inputString, &wordInfo.TestAnswer, 2, "しませんでした")
 		} else if politeness == casual {
-			addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 2, "しなかった")
+			addVerbSuffix(inputString, &wordInfo.TestAnswer, 2, "しなかった")
 		}
 		break
 
 	case te:
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 2, "して")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 2, "して")
 		break
 
 	case potential:
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 2, "できる")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 2, "できる")
 		break
 
 	case volitional:
 		if politeness == polite {
-			addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 2, "しましょう")
+			addVerbSuffix(inputString, &wordInfo.TestAnswer, 2, "しましょう")
 		} else if politeness == casual {
-			addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 2, "しよう")
+			addVerbSuffix(inputString, &wordInfo.TestAnswer, 2, "しよう")
 		}
 		break
 
 	case want:
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 2, "したい")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 2, "したい")
 		break
 
 	default:
@@ -326,21 +326,21 @@ func createSuruAnswer(wordInfo *WordData, politeness string, formData verbFormDa
 	}
 }
 
-func createIrregularVerbAnswer(wordInfo *WordData, politeness string, formData verbFormData) {
+func createIrregularVerbAnswer(wordInfo *WordData, inputString string, politeness string, formData verbFormData) {
 
-	switch wordInfo.Japanese {
+	switch inputString {
 
 	case "ある":
 	case "いる":
-		createAruIruAnswer(wordInfo, politeness, formData)
+		createAruIruAnswer(wordInfo, inputString, politeness, formData)
 		break
 
 	case "くる":
-		createKuruAnswer(wordInfo, politeness, formData)
+		createKuruAnswer(wordInfo, inputString, politeness, formData)
 		break
 
 	case "いく":
-		createIkuAnswer(wordInfo, politeness, formData)
+		createIkuAnswer(wordInfo, inputString, politeness, formData)
 		break
 
 	default:
@@ -351,126 +351,126 @@ func createIrregularVerbAnswer(wordInfo *WordData, politeness string, formData v
 	}
 
 	if wordInfo.Subtype == "する" {
-		createSuruAnswer(wordInfo, politeness, formData)
+		createSuruAnswer(wordInfo, inputString, politeness, formData)
 	}
 }
 
-func createVerbPolitePresentForm(wordInfo *WordData, politeness string) {
+func createVerbPolitePresentForm(wordInfo *WordData, inputString string, politeness string) {
 
-	lastChar, _ := utf8.DecodeLastRuneInString(wordInfo.Japanese)
+	lastChar, _ := utf8.DecodeLastRuneInString(inputString)
 
 	if lastChar == 'る' && wordInfo.Subtype == ichidanVerb {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "ます")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "ます")
 	} else if lastChar == 'る' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "ります")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "ります")
 	} else if lastChar == 'う' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "います")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "います")
 	} else if lastChar == 'む' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "みます")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "みます")
 	} else if lastChar == 'く' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "きます")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "きます")
 	} else if lastChar == 'ぐ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "ぎます")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "ぎます")
 	} else if lastChar == 'つ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "ちます")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "ちます")
 	} else if lastChar == 'ぶ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "びます")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "びます")
 	} else if lastChar == 'ぬ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "にます")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "にます")
 	} else if lastChar == 'す' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "します")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "します")
 	}
 }
 
-func createVerbCasualPresentForm(wordInfo *WordData, politeness string) {
+func createVerbCasualPresentForm(wordInfo *WordData, inputString string, politeness string) {
 
-	wordInfo.TestAnswer = wordInfo.Japanese
+	wordInfo.TestAnswer = inputString
 }
 
-func createVerbPolitePresentNegativeForm(wordInfo *WordData, politeness string) {
+func createVerbPolitePresentNegativeForm(wordInfo *WordData, inputString string, politeness string) {
 
-	lastChar, _ := utf8.DecodeLastRuneInString(wordInfo.Japanese)
+	lastChar, _ := utf8.DecodeLastRuneInString(inputString)
 
 	if lastChar == 'る' && wordInfo.Subtype == ichidanVerb {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "ません")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "ません")
 	} else if lastChar == 'る' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "りません")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "りません")
 	} else if lastChar == 'う' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "いません")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "いません")
 	} else if lastChar == 'む' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "みません")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "みません")
 	} else if lastChar == 'く' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "きません")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "きません")
 	} else if lastChar == 'ぐ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "ぎません")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "ぎません")
 	} else if lastChar == 'つ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "ちません")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "ちません")
 	} else if lastChar == 'ぶ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "びません")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "びません")
 	} else if lastChar == 'ぬ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "にません")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "にません")
 	} else if lastChar == 'す' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "しません")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "しません")
 	}
 }
 
-func createVerbCasualPresentNegativeForm(wordInfo *WordData, politeness string) {
+func createVerbCasualPresentNegativeForm(wordInfo *WordData, inputString string, politeness string) {
 
-	lastChar, _ := utf8.DecodeLastRuneInString(wordInfo.Japanese)
+	lastChar, _ := utf8.DecodeLastRuneInString(inputString)
 
 	if lastChar == 'る' && wordInfo.Subtype == ichidanVerb {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "ない")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "ない")
 	} else if lastChar == 'る' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "らない")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "らない")
 	} else if lastChar == 'う' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "わない")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "わない")
 	} else if lastChar == 'む' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "まない")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "まない")
 	} else if lastChar == 'く' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "かない")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "かない")
 	} else if lastChar == 'ぐ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "がない")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "がない")
 	} else if lastChar == 'つ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "たない")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "たない")
 	} else if lastChar == 'ぶ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "ばない")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "ばない")
 	} else if lastChar == 'ぬ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "まない")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "まない")
 	} else if lastChar == 'す' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "さない")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "さない")
 	}
 }
 
-func createVerbPolitePastForm(wordInfo *WordData, politeness string) {
+func createVerbPolitePastForm(wordInfo *WordData, inputString string, politeness string) {
 
-	lastChar, _ := utf8.DecodeLastRuneInString(wordInfo.Japanese)
+	lastChar, _ := utf8.DecodeLastRuneInString(inputString)
 
 	if lastChar == 'る' && wordInfo.Subtype == ichidanVerb {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "ました")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "ました")
 	} else if lastChar == 'る' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "りました")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "りました")
 	} else if lastChar == 'う' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "いました")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "いました")
 	} else if lastChar == 'む' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "みました")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "みました")
 	} else if lastChar == 'く' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "きました")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "きました")
 	} else if lastChar == 'ぐ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "ぎました")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "ぎました")
 	} else if lastChar == 'つ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "ちました")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "ちました")
 	} else if lastChar == 'ぶ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "びました")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "びました")
 	} else if lastChar == 'ぬ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "にました")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "にました")
 	} else if lastChar == 'す' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "しました")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "しました")
 	}
 }
 
-func createVerbCasualPastForm(wordInfo *WordData, politeness string) {
+func createVerbCasualPastForm(wordInfo *WordData, inputString string, politeness string) {
 
-	createVerbTeForm(wordInfo)
+	createVerbTeForm(wordInfo, inputString)
 
 	lastChar, _ := utf8.DecodeLastRuneInString(wordInfo.TestAnswer)
 
@@ -485,247 +485,254 @@ func createVerbCasualPastForm(wordInfo *WordData, politeness string) {
 	}
 }
 
-func createVerbPolitePastNegativeForm(wordInfo *WordData, politeness string) {
+func createVerbPolitePastNegativeForm(wordInfo *WordData, inputString string, politeness string) {
 
-	lastChar, _ := utf8.DecodeLastRuneInString(wordInfo.Japanese)
+	lastChar, _ := utf8.DecodeLastRuneInString(inputString)
 
 	if lastChar == 'る' && wordInfo.Subtype == ichidanVerb {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "ませんでした")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "ませんでした")
 	} else if lastChar == 'る' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "りませんでした")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "りませんでした")
 	} else if lastChar == 'う' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "いませんでした")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "いませんでした")
 	} else if lastChar == 'む' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "みませんでした")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "みませんでした")
 	} else if lastChar == 'く' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "きませんでした")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "きませんでした")
 	} else if lastChar == 'ぐ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "ぎませんでした")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "ぎませんでした")
 	} else if lastChar == 'つ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "ちませんでした")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "ちませんでした")
 	} else if lastChar == 'ぶ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "びませんでした")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "びませんでした")
 	} else if lastChar == 'ぬ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "にませんでした")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "にませんでした")
 	} else if lastChar == 'す' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "しませんでした")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "しませんでした")
 	}
 }
 
-func createVerbCasualPastNegativeForm(wordInfo *WordData, politeness string) {
+func createVerbCasualPastNegativeForm(wordInfo *WordData, inputString string, politeness string) {
 
-	lastChar, _ := utf8.DecodeLastRuneInString(wordInfo.Japanese)
+	lastChar, _ := utf8.DecodeLastRuneInString(inputString)
 
 	if lastChar == 'る' && wordInfo.Subtype == ichidanVerb {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "なかった")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "なかった")
 	} else if lastChar == 'る' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "らなかった")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "らなかった")
 	} else if lastChar == 'う' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "わなかった")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "わなかった")
 	} else if lastChar == 'む' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "まなかった")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "まなかった")
 	} else if lastChar == 'く' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "かなかった")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "かなかった")
 	} else if lastChar == 'ぐ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "がなかった")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "がなかった")
 	} else if lastChar == 'つ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "たなかった")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "たなかった")
 	} else if lastChar == 'ぶ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "ばなかった")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "ばなかった")
 	} else if lastChar == 'ぬ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "まなかった")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "まなかった")
 	} else if lastChar == 'す' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "さなかった")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "さなかった")
 	}
 }
 
-func createVerbTeForm(wordInfo *WordData) {
+func createVerbTeForm(wordInfo *WordData, inputString string) {
 
-	lastChar, _ := utf8.DecodeLastRuneInString(wordInfo.Japanese)
+	lastChar, _ := utf8.DecodeLastRuneInString(inputString)
 
 	if lastChar == 'る' && wordInfo.Subtype == ichidanVerb {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "て")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "て")
 	} else if lastChar == 'る' || lastChar == 'う' || lastChar == 'つ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "って")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "って")
 	} else if lastChar == 'む' || lastChar == 'ぶ' || lastChar == 'ぬ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "んで")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "んで")
 	} else if lastChar == 'く' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "いて")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "いて")
 	} else if lastChar == 'ぐ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "いで")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "いで")
 	} else if wordInfo.Subtype == "する" || lastChar == 'す' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 2, "して")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 2, "して")
 	}
 }
 
-func createVerbPotentialForm(wordInfo *WordData) {
+func createVerbPotentialForm(wordInfo *WordData, inputString string) {
 
-	lastChar, _ := utf8.DecodeLastRuneInString(wordInfo.Japanese)
+	lastChar, _ := utf8.DecodeLastRuneInString(inputString)
 
 	if lastChar == 'る' && wordInfo.Subtype == ichidanVerb {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "られる")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "られる")
 	} else if lastChar == 'る' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "れる")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "れる")
 	} else if lastChar == 'う' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "える")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "える")
 	} else if lastChar == 'む' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "める")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "める")
 	} else if lastChar == 'く' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "ける")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "ける")
 	} else if lastChar == 'ぐ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "げる")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "げる")
 	} else if lastChar == 'つ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "てる")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "てる")
 	} else if lastChar == 'ぶ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "べる")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "べる")
 	} else if lastChar == 'ぬ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "ねる")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "ねる")
 	} else if lastChar == 'す' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "せる")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "せる")
 	}
 }
 
-func createVerbPoliteVolitionalForm(wordInfo *WordData, politeness string) {
+func createVerbPoliteVolitionalForm(wordInfo *WordData, inputString string, politeness string) {
 
-	lastChar, _ := utf8.DecodeLastRuneInString(wordInfo.Japanese)
+	lastChar, _ := utf8.DecodeLastRuneInString(inputString)
 
 	if lastChar == 'る' && wordInfo.Subtype == ichidanVerb {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "ましょう")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "ましょう")
 	} else if lastChar == 'る' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "りましょう")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "りましょう")
 	} else if lastChar == 'う' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "いましょう")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "いましょう")
 	} else if lastChar == 'む' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "みましょう")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "みましょう")
 	} else if lastChar == 'く' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "きましょう")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "きましょう")
 	} else if lastChar == 'ぐ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "ぎましょう")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "ぎましょう")
 	} else if lastChar == 'つ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "ちましょう")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "ちましょう")
 	} else if lastChar == 'ぶ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "びましょう")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "びましょう")
 	} else if lastChar == 'ぬ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "にましょう")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "にましょう")
 	} else if lastChar == 'す' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "しましょう")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "しましょう")
 	}
 }
 
-func createVerbCasualVolitionalForm(wordInfo *WordData, politeness string) {
+func createVerbCasualVolitionalForm(wordInfo *WordData, inputString string, politeness string) {
 
-	lastChar, _ := utf8.DecodeLastRuneInString(wordInfo.Japanese)
+	lastChar, _ := utf8.DecodeLastRuneInString(inputString)
 
 	if lastChar == 'る' && wordInfo.Subtype == ichidanVerb {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "よう")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "よう")
 	} else if lastChar == 'る' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "ろう")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "ろう")
 	} else if lastChar == 'う' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "おう")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "おう")
 	} else if lastChar == 'む' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "もう")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "もう")
 	} else if lastChar == 'く' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "こう")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "こう")
 	} else if lastChar == 'ぐ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "ごう")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "ごう")
 	} else if lastChar == 'つ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "とう")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "とう")
 	} else if lastChar == 'ぶ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "ぼう")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "ぼう")
 	} else if lastChar == 'ぬ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "のう")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "のう")
 	} else if lastChar == 'す' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "そう")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "そう")
 	}
 }
 
-func createVerbWantForm(wordInfo *WordData) {
+func createVerbWantForm(wordInfo *WordData, inputString string) {
 
-	lastChar, _ := utf8.DecodeLastRuneInString(wordInfo.Japanese)
+	lastChar, _ := utf8.DecodeLastRuneInString(inputString)
 
 	if lastChar == 'る' && wordInfo.Subtype == ichidanVerb {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "たい")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "たい")
 	} else if lastChar == 'る' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "りたい")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "りたい")
 	} else if lastChar == 'う' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "いたい")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "いたい")
 	} else if lastChar == 'む' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "みたい")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "みたい")
 	} else if lastChar == 'く' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "きたい")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "きたい")
 	} else if lastChar == 'ぐ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "ぎたい")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "ぎたい")
 	} else if lastChar == 'つ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "ちたい")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "ちたい")
 	} else if lastChar == 'ぶ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "びたい")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "びたい")
 	} else if lastChar == 'ぬ' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "にたい")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "にたい")
 	} else if lastChar == 'す' {
-		addVerbSuffix(wordInfo.Japanese, &wordInfo.TestAnswer, 1, "したい")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "したい")
 	}
 }
 
-func createVerbAnswer(wordInfo *WordData, politeness string, formData verbFormData) {
+func createVerbAnswer(wordInfo *WordData, politeness string, formData verbFormData, showKanji bool) {
 
 	wordInfo.TestAnswer = ""
 
-	if isVerbIrregular(wordInfo.Japanese, wordInfo.Subtype) {
-		createIrregularVerbAnswer(wordInfo, politeness, formData)
+	var inputString string
+	if showKanji {
+		inputString = wordInfo.Kanji
+	} else {
+		inputString = wordInfo.Japanese
+	}
+
+	if isVerbIrregular(inputString, wordInfo.Subtype) {
+		createIrregularVerbAnswer(wordInfo, inputString, politeness, formData)
 	} else {
 
 		switch formData.form {
 
 		case present:
 			if politeness == polite {
-				createVerbPolitePresentForm(wordInfo, politeness)
+				createVerbPolitePresentForm(wordInfo, inputString, politeness)
 			} else if politeness == casual {
-				createVerbCasualPresentForm(wordInfo, politeness)
+				createVerbCasualPresentForm(wordInfo, inputString, politeness)
 			}
 			break
 
 		case presentNegative:
 			if politeness == polite {
-				createVerbPolitePresentNegativeForm(wordInfo, politeness)
+				createVerbPolitePresentNegativeForm(wordInfo, inputString, politeness)
 			} else if politeness == casual {
-				createVerbCasualPresentNegativeForm(wordInfo, politeness)
+				createVerbCasualPresentNegativeForm(wordInfo, inputString, politeness)
 			}
 			break
 
 		case past:
 			if politeness == polite {
-				createVerbPolitePastForm(wordInfo, politeness)
+				createVerbPolitePastForm(wordInfo, inputString, politeness)
 			} else if politeness == casual {
-				createVerbCasualPastForm(wordInfo, politeness)
+				createVerbCasualPastForm(wordInfo, inputString, politeness)
 			}
 			break
 
 		case pastNegative:
 			if politeness == polite {
-				createVerbPolitePastNegativeForm(wordInfo, politeness)
+				createVerbPolitePastNegativeForm(wordInfo, inputString, politeness)
 			} else if politeness == casual {
-				createVerbCasualPastNegativeForm(wordInfo, politeness)
+				createVerbCasualPastNegativeForm(wordInfo, inputString, politeness)
 			}
 			break
 
 		case te:
-			createVerbTeForm(wordInfo)
+			createVerbTeForm(wordInfo, inputString)
 			break
 
 		case potential:
-			createVerbPotentialForm(wordInfo)
+			createVerbPotentialForm(wordInfo, inputString)
 			break
 
 		case volitional:
 			if politeness == polite {
-				createVerbPoliteVolitionalForm(wordInfo, politeness)
+				createVerbPoliteVolitionalForm(wordInfo, inputString, politeness)
 			} else if politeness == casual {
-				createVerbCasualVolitionalForm(wordInfo, politeness)
+				createVerbCasualVolitionalForm(wordInfo, inputString, politeness)
 			}
 			break
 
 		case want:
-			createVerbWantForm(wordInfo)
+			createVerbWantForm(wordInfo, inputString)
 			break
 		}
 	}

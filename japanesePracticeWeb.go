@@ -59,9 +59,11 @@ type OptionButton struct {
 
 type TestVariables struct {
 	PageTitle               string
+	DisplayOptionButtons    []OptionButton
 	WordOptionButtons       []OptionButton
 	PolitenessOptionButtons []OptionButton
 	FormOptionButtons       []OptionButton
+	TestButtonDisabled      bool
 	TestWords               []WordData
 	TestForms               []string
 }
@@ -98,6 +100,11 @@ const (
 
 	iAdjective  = "い-adjective"
 	naAdjective = "な-adjective"
+)
+
+const (
+	kana  = "Kana"
+	kanji = "Kanji"
 )
 
 var jp japanesePracticeWeb
@@ -249,10 +256,12 @@ func DisplayOptionButtons(w http.ResponseWriter, r *http.Request) {
 
 	// Display some radio buttons to the user
 	wordOptionButtons := SetupWordOptions(false, false)
+	displayOptionButtons := SetupDisplayOptions("kana")
 
 	MyTestVariables := TestVariables{
-		PageTitle:         Title,
-		WordOptionButtons: wordOptionButtons,
+		PageTitle:            Title,
+		DisplayOptionButtons: displayOptionButtons,
+		WordOptionButtons:    wordOptionButtons,
 	}
 
 	t, err := template.ParseFiles("jpMain.html") //parse the html file homepage.html
@@ -268,6 +277,16 @@ func DisplayOptionButtons(w http.ResponseWriter, r *http.Request) {
 
 func SanitizeHtmlName(input string) string {
 	return (s.Replace(s.ToLower(input), " ", "", -1))
+}
+
+func SetupDisplayOptions(checkedName string) []OptionButton {
+
+	displayOptionButtons := []OptionButton{
+		OptionButton{"displayRadio", "kana", false, checkedName == "kana", "Kana"},
+		OptionButton{"displayRadio", "kanji", false, checkedName == "kanji", "Kanji"},
+	}
+
+	return displayOptionButtons
 }
 
 func SetupWordOptions(hasVerbs bool, hasAdjectives bool) []OptionButton {
@@ -408,7 +427,14 @@ func RunTest(form url.Values) ([]WordData, []string) {
 			question += formData.form
 			question += " form"
 
-			createVerbAnswer(&outputWords[i], politeness, formData)
+			// Pass Kanji flag into answer routines
+			displayOption := form.Get("displayRadio")
+			var showKanji bool
+			if displayOption == "kanji" {
+				showKanji = true
+			}
+
+			createVerbAnswer(&outputWords[i], politeness, formData, showKanji)
 		}
 
 		outputForms = append(outputForms, question)
@@ -463,6 +489,9 @@ func WordTypeSelected(w http.ResponseWriter, r *http.Request) {
 	}
 
 	wordOptionButtons := SetupWordOptions(hasVerbs, hasAdjectives)
+	checkedRadio := r.Form.Get("displayRadio")
+
+	displayOptionButtons := SetupDisplayOptions(checkedRadio)
 
 	var MyTestVariables TestVariables
 
@@ -470,9 +499,11 @@ func WordTypeSelected(w http.ResponseWriter, r *http.Request) {
 		if hasVerbs && hasAdjectives {
 			MyTestVariables = TestVariables{
 				PageTitle:               Title,
+				DisplayOptionButtons:    displayOptionButtons,
 				WordOptionButtons:       wordOptionButtons,
 				PolitenessOptionButtons: politenessOptionButtons,
 				FormOptionButtons:       formOptionButtons,
+				TestButtonDisabled:      false,
 				TestWords:               testWords,
 				TestForms:               testForms,
 				// Adjective form options go here
@@ -480,39 +511,49 @@ func WordTypeSelected(w http.ResponseWriter, r *http.Request) {
 		} else if hasVerbs && !hasAdjectives {
 			MyTestVariables = TestVariables{
 				PageTitle:               Title,
+				DisplayOptionButtons:    displayOptionButtons,
 				WordOptionButtons:       wordOptionButtons,
 				PolitenessOptionButtons: politenessOptionButtons,
 				FormOptionButtons:       formOptionButtons,
+				TestButtonDisabled:      false,
 				TestWords:               testWords,
 				TestForms:               testForms,
 			}
 		} else if !hasVerbs {
 			MyTestVariables = TestVariables{
-				PageTitle:         Title,
-				WordOptionButtons: wordOptionButtons,
-				TestWords:         testWords,
-				TestForms:         testForms,
+				PageTitle:            Title,
+				DisplayOptionButtons: displayOptionButtons,
+				WordOptionButtons:    wordOptionButtons,
+				TestButtonDisabled:   false,
+				TestWords:            testWords,
+				TestForms:            testForms,
 			}
 		}
 	} else {
 		if hasVerbs && hasAdjectives {
 			MyTestVariables = TestVariables{
 				PageTitle:               Title,
+				DisplayOptionButtons:    displayOptionButtons,
 				WordOptionButtons:       wordOptionButtons,
 				PolitenessOptionButtons: politenessOptionButtons,
 				FormOptionButtons:       formOptionButtons,
+				TestButtonDisabled:      false,
 			}
 		} else if hasVerbs && !hasAdjectives {
 			MyTestVariables = TestVariables{
 				PageTitle:               Title,
+				DisplayOptionButtons:    displayOptionButtons,
 				WordOptionButtons:       wordOptionButtons,
 				PolitenessOptionButtons: politenessOptionButtons,
 				FormOptionButtons:       formOptionButtons,
+				TestButtonDisabled:      false,
 			}
 		} else if !hasVerbs {
 			MyTestVariables = TestVariables{
-				PageTitle:         Title,
-				WordOptionButtons: wordOptionButtons,
+				PageTitle:            Title,
+				DisplayOptionButtons: displayOptionButtons,
+				WordOptionButtons:    wordOptionButtons,
+				TestButtonDisabled:   true,
 			}
 		}
 	}

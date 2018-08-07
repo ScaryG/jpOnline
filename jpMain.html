@@ -6,20 +6,23 @@
 <title>{{.PageTitle}}</title>
 
 <style>
-  body { background-color: #ebebeb }
-  h1 { font-size: 48pt; font-weight: bold; text-align: center; margin: 16px }
-  h2 { font-size: 24pt; font-weight: bold; text-align: center; margin-bottom: 4px; margin-top: 16px }
-  h3 { font-size: 14pt; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px }
-  h4 { font-size: 12pt; font-style: italic; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative }
-  j1 { font-size: 24pt; font-weight: bold; text-align: center }
-  j2 { font-size: 32pt; font-weight: bold; text-align: center; padding-bottom: 24px; margin-top: 16px; color: mediumblue }
-  #wordSpan0 { font-size: 14pt; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px }
-  #wordSpan1 { font-size: 14pt; font-weight: bold; text-align: center; margin-top: 0px; padding-top: 0px; position: relative }
-  #buttonParentBox { text-align: center; position: relative; min-height: 310px; width: 80%; background: white; display: inline-block; padding: 0px}
+  body { background-color: #efeff6 }
+  h1 { font-size: 48pt; font-family: Arial, Helvetica, sans-serif; font-weight: bold; text-align: center; margin: 16px; color: white }
+  h2 { font-size: 24pt; font-weight: bold; text-align: center; margin-bottom: 4px; margin-top: 16px; position: relative; top: -20px }
+  h3 { font-size: 14pt; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -20px }
+  h4 { font-size: 12pt; font-style: italic; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -12px }
+  j2 { font-size: 32pt; font-weight: bold; text-align: center; padding-bottom: 24px; margin-top: 16px; color: mediumblue; position: relative; top: -20px }
+  #wordSpan0 { font-size: 14pt; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -12px }
+  #wordSpan1 { font-size: 14pt; font-weight: bold; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -12px }
+  #buttonParentBox { text-align: center; position: relative; min-height: 310px; width: 50%; background: white; display: inline-block; padding: 0px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
   #buttonBox { text-align: center }
+  #checkAllButton { background-color: lightsalmon; }
+  #uncheckAllButton { background-color: palegreen; }
+  #counterSpan { text-align: right; width: 98%; display: inline-block; margin-bottom: 0px; font-size: 12pt; font-style: italic; position: relative; top: 5px }
+  #headerDiv { width: 100%; display: inline-block; margin-bottom: 0px; background-color: royalblue; margin-bottom: 18px; }
   .optionBoxParent { text-align: center }
   .optionBox { width: 80%; background: white; display: inline-block; text-align: left; padding: 16px; padding-top: 0px; border-style:solid; border-color: #ebebeb; border-width: 1px }
-  .testBox { width: 80%; background: white; display: inline-block; text-align: center; padding: 16px; border-style:solid; border-color: #ebebeb; border-width: 1px; white-space: nowrap }
+  .testBox { width: 80%; background: white; display: inline-block; text-align: center; padding: 16px; border-style:solid; border-color: #ebebeb; border-width: 1px; white-space: nowrap; }
   .button1 { width: 50%; height: 50px; background:radial-gradient(white, lightyellow); font-size: 16pt; font-weight: bold }
   .button2 { width: 25%; height: 50px; position: absolute; top: 240px; left: 0; right: 0; margin: auto}
 </style>
@@ -44,6 +47,7 @@
     {{with $1:=.WordOptionButtons}}
       {{range $1}}
         $('input[name={{.Name}}]').prop('checked', true);
+        $('form').submit();
       {{end}}
     {{end}}
    });
@@ -68,6 +72,7 @@
     {{with $1:=.WordOptionButtons}}
       {{range $1}}
         $('input[name={{.Name}}]').prop('checked', false);
+        $('form').submit();
       {{end}}
     {{end}}
    });
@@ -91,15 +96,28 @@
 </script>
 
 <body>
-  <h1>Japanese Vocab Practice</h1>
+  <div id="headerDiv">
+    <h1>Japanese Vocab Practice</h1>
+  </div>
 
   <div class="testControls">
     <form action="/controls" method="post">
+
+      {{with $4:=.DisplayOptionButtons}}
+        <div class="optionBoxParent"><div class="optionBox">
+            <p><b>Display:</b></p>
+            {{range $4}}
+              <input type="radio" name={{.Name}} value="{{.Value}}" id={{.Value}} {{if .IsChecked}} checked="true" {{end}}> {{.Text}}
+            {{end}}
+          </div>
+        </div>
+      {{end}}
+
       {{with $1:=.WordOptionButtons}}
         <div class="optionBoxParent"><div class="optionBox">
             <p><b>Word Types:</b></p>
-            <input type="button" name="uncheckAllWordTypes" value="Uncheck All">
-            <input type="button" name="checkAllWordTypes" value="Check All">
+            <input type="button" name="uncheckAllWordTypes" value="Uncheck All" id="checkAllButton">
+            <input type="button" name="checkAllWordTypes" value="Check All" id="uncheckAllButton">
             {{range $1}}
               <input type="checkbox" name={{.Name}} value={{.Value}} {{if .IsDisabled}} disabled=true {{end}} {{if .IsChecked}} checked{{end}}> {{.Text}}
             {{end}}
@@ -110,8 +128,8 @@
       {{with $2:=.PolitenessOptionButtons}}
         <div class="optionBoxParent"><div class="optionBox">
             <p><b>Verb Politeness Level:</b></p>
-            <input type="button" name="uncheckAllVerbPoliteness" value="Uncheck All">
-            <input type="button" name="checkAllVerbPoliteness" value="Check All">
+            <input type="button" name="uncheckAllVerbPoliteness" value="Uncheck All" id="checkAllButton">
+            <input type="button" name="checkAllVerbPoliteness" value="Check All" id="uncheckAllButton">
             {{range $2}}
               <input type="checkbox" name={{.Name}} value={{.Value}} {{if .IsDisabled}} disabled=true {{end}} {{if .IsChecked}} checked{{end}}> {{.Text}}
             {{end}}
@@ -122,8 +140,8 @@
       {{with $3:=.FormOptionButtons}}
         <div class="optionBoxParent"><div class="optionBox">
             <p><b>Verb Form:</b></p>
-            <input type="button" name="uncheckAllVerbForms" value="Uncheck All">
-            <input type="button" name="checkAllVerbForms" value="Check All">
+            <input type="button" name="uncheckAllVerbForms" value="Uncheck All" id="checkAllButton">
+            <input type="button" name="checkAllVerbForms" value="Check All" id="uncheckAllButton">
             {{range $3}}
               <input type="checkbox" name={{.Name}} value={{.Value}} {{if .IsDisabled}} disabled=true {{end}} {{if .IsChecked}} checked{{end}}> {{.Text}}
             {{end}}
@@ -138,7 +156,7 @@
   <br>
 
   <div id="buttonBox">
-    <input type="button" value="Start/Restart Test" name="runTest" class="button1">
+    <input type="button" value="Start/Restart Test" name="runTest" class="button1" {{if .TestButtonDisabled}} disabled=true {{end}}>
   </div>
 
   <br>
@@ -165,8 +183,16 @@
               removeElement("answerDiv");
               removeElement("englishText");
               removeElement("formText");
+              removeElement("counterSpan");
 
               var parentDiv = document.getElementById("buttonParentBox");
+
+              var counterSpan = document.createElement("span");
+              counterSpan.id = "counterSpan"
+
+              var counterText = document.createTextNode(index + "/" + wordData.length)
+              counterSpan.appendChild(counterText);
+              parentDiv.appendChild(counterSpan);
 
               var wordText = document.createElement("h2");
               wordText.id = "englishText";
