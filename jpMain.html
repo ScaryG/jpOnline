@@ -7,7 +7,8 @@
 
 <style>
   body { background-color: #efeff6 }
-  h1 { font-size: 48pt; font-family: Arial, Helvetica, sans-serif; font-weight: bold; text-align: center; margin: 16px; color: white }
+  h1 { font-size: 20pt; font-family: Arial, Helvetica, sans-serif; font-weight: bold; float: left; margin: 6px; margin-left: 10px; color: royalblue }
+  j1 { font-size: 20pt; font-family: Arial, Helvetica, sans-serif; font-weight: bold; float: right; margin: 6px; margin-right: 10px; color: royalblue }
   h2 { font-size: 24pt; font-weight: bold; text-align: center; margin-bottom: 4px; margin-top: 16px; position: relative; top: -20px }
   h3 { font-size: 14pt; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -20px }
   h4 { font-size: 12pt; font-style: italic; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -12px }
@@ -16,10 +17,10 @@
   #wordSpan1 { font-size: 14pt; font-weight: bold; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -12px }
   #buttonParentBox { text-align: center; position: relative; min-height: 310px; width: 50%; background: white; display: inline-block; padding: 0px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
   #buttonBox { text-align: center }
-  #checkAllButton { background-color: lightsalmon; }
-  #uncheckAllButton { background-color: palegreen; }
+  #checkAllButton { background-color: #ffcccc; }
+  #uncheckAllButton { background-color: #ccffcc; }
   #counterSpan { text-align: right; width: 98%; display: inline-block; margin-bottom: 0px; font-size: 12pt; font-style: italic; position: relative; top: 5px }
-  #headerDiv { width: 100%; display: inline-block; margin-bottom: 0px; background-color: royalblue; margin-bottom: 18px; }
+  #headerDiv { width: 100%; display: inline-block; margin-bottom: 0px; background-color: white; margin-bottom: 12px; border-bottom-color: royalblue; border-bottom-width: 2px; border-bottom-style: solid }
   .optionBoxParent { text-align: center }
   .optionBox { width: 80%; background: white; display: inline-block; text-align: left; padding: 16px; padding-top: 0px; border-style:solid; border-color: #ebebeb; border-width: 1px }
   .testBox { width: 80%; background: white; display: inline-block; text-align: center; padding: 16px; border-style:solid; border-color: #ebebeb; border-width: 1px; white-space: nowrap; }
@@ -97,7 +98,9 @@
 
 <body>
   <div id="headerDiv">
-    <h1>Japanese Vocab Practice</h1>
+    <!-- <span><h1>Japanese Vocab Practice</h1></span><span><j1>Japanese Vocab Practice</j1></span> -->
+    <span style="font-size: 20pt; font-family: Arial, Helvetica, sans-serif; font-weight: bold; float: left; margin: 6px; margin-left: 110px; margin-bottom: 0px; color: royalblue">Japanese Vocab Practice</span>
+    <span style="font-size: 20pt; font-family: Arial, Helvetica, sans-serif; font-weight: bold; float: right; margin: 6px; margin-right: 110px; margin-bottom: 0px; color: royalblue">日本語の語彙練習</span>
   </div>
 
   <div class="testControls">
