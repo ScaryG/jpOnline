@@ -262,6 +262,7 @@ func DisplayOptionButtons(w http.ResponseWriter, r *http.Request) {
 		PageTitle:            Title,
 		DisplayOptionButtons: displayOptionButtons,
 		WordOptionButtons:    wordOptionButtons,
+		TestButtonDisabled:   true,
 	}
 
 	t, err := template.ParseFiles("jpMain.html") //parse the html file homepage.html
