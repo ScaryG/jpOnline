@@ -355,12 +355,12 @@ func RunTest(form url.Values) ([]WordData, []string) {
 		// Verb form options
 		numFormsOptions := len(jp.db.verbFormData)
 
-		for i := 0; i < numFormsOptions; i++ {
-			option := form.Get(s.ToLower(jp.db.verbFormData[i].form))
+		for j := 0; j < numFormsOptions; j++ {
+			option := form.Get(SanitizeHtmlName(jp.db.verbFormData[j].form))
 			if option != "" &&
-				((verbPolitenessAgnosticAllowed && !jp.db.verbFormData[i].usesPoliteness) ||
-					(numVerbPoliteness > 0 && jp.db.verbFormData[i].usesPoliteness)) {
-				allowedVerbForms = append(allowedVerbForms, jp.db.verbFormData[i])
+				((verbPolitenessAgnosticAllowed && !jp.db.verbFormData[j].usesPoliteness) ||
+					(numVerbPoliteness > 0 && jp.db.verbFormData[j].usesPoliteness)) {
+				allowedVerbForms = append(allowedVerbForms, jp.db.verbFormData[j])
 			}
 		}
 		numVerbForms = len(allowedVerbForms)
