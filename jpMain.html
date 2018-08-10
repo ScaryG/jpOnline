@@ -13,12 +13,13 @@
   h3 { font-size: 14pt; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -20px }
   h4 { font-size: 12pt; font-style: italic; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -12px }
   j2 { font-size: 32pt; font-weight: bold; text-align: center; padding-bottom: 24px; margin-top: 16px; color: mediumblue; position: relative; top: -20px }
+  #checks { font-size: 24pt; }
   #wordSpan0 { font-size: 14pt; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -12px }
   #wordSpan1 { font-size: 14pt; font-weight: bold; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -12px }
   #buttonParentBox { text-align: center; position: relative; min-height: 310px; width: 50%; background: white; display: inline-block; padding: 0px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
   #buttonBox { text-align: center }
-  #checkAllButton { background-color: #ffcccc; }
-  #uncheckAllButton { background-color: #ccffcc; }
+  #checkAllButton { background-color: #ccffcc; margin-right: 10px }
+  #uncheckAllButton { background-color: #ffcccc; }
   #counterSpan { text-align: right; width: 98%; display: inline-block; margin-bottom: 0px; font-size: 12pt; font-style: italic; position: relative; top: 5px }
   #headerDiv { width: 100%; display: inline-block; margin-bottom: 0px; background-color: white; margin-bottom: 12px; border-bottom-color: royalblue; border-bottom-width: 2px; border-bottom-style: solid }
   .optionBoxParent { text-align: center }
@@ -26,6 +27,82 @@
   .testBox { width: 80%; background: white; display: inline-block; text-align: center; padding: 16px; border-style:solid; border-color: #ebebeb; border-width: 1px; white-space: nowrap; }
   .button1 { width: 50%; height: 50px; background:radial-gradient(white, lightyellow); font-size: 16pt; font-weight: bold }
   .button2 { width: 25%; height: 50px; position: absolute; top: 240px; left: 0; right: 0; margin: auto}
+
+  .regular-checkbox {
+    display: none;
+  }
+
+  .regular-checkbox + label {
+    background-color: #fafafa;
+    border: 1px solid #cacece;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+    padding: 9px;
+    border-radius: 3px;
+    display: inline-block;
+    position: relative;
+    top: 2px;
+  }
+
+  .regular-checkbox + label:active, .regular-checkbox:checked + label:active {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+  }
+
+  .regular-checkbox:checked + label {
+    background-color: #d6e6f1;
+    border: 1px solid #adb8c0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+  }
+
+  .regular-checkbox:checked + label:after {
+    content: '\2714';
+    font-size: 14px;
+    position: absolute;
+    top: 0px;
+    left: 3px;
+    color: #0091ff;
+  }
+
+  /* RADIO */
+
+  .regular-radio {
+    display: none;
+  }
+
+  .regular-radio + label {
+    -webkit-appearance: none;
+    background-color: #fafafa;
+    border: 1px solid #cacece;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+    padding: 9px;
+    border-radius: 50px;
+    display: inline-block;
+    position: relative;
+    top: 2px;
+  }
+
+  .regular-radio:checked + label:before {
+    content: ' ';
+    width: 12px;
+    height: 12px;
+    border-radius: 50px;
+    position: absolute;
+    top: 3px;
+    background: #0091ff;
+    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3);
+    text-shadow: 0px;
+    left: 3px;
+    font-size: 32px;
+  }
+
+  .regular-radio:checked + label {
+    background-color: #d6e6f1;
+    border: 1px solid #adb8c0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1), inset 0px 0px 10px rgba(0,0,0,0.1);
+  }
+
+  .regular-radio + label:active, .regular-radio:checked + label:active {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+  }
 </style>
 </head>
 
@@ -100,7 +177,7 @@
   <div id="headerDiv">
     <!-- <span><h1>Japanese Vocab Practice</h1></span><span><j1>Japanese Vocab Practice</j1></span> -->
     <span style="font-size: 20pt; font-family: Arial, Helvetica, sans-serif; font-weight: bold; float: left; margin: 6px; margin-left: 110px; margin-bottom: 0px; color: royalblue">Japanese Vocab Practice</span>
-    <span style="font-size: 20pt; font-family: Arial, Helvetica, sans-serif; font-weight: bold; float: right; margin: 6px; margin-right: 110px; margin-bottom: 0px; color: royalblue">日本語の語彙練習</span>
+    <span style="font-size: 20pt; font-family: Arial, Helvetica, sans-serif; font-weight: bold; float: right; margin: 6px; margin-right: 110px; margin-bottom: 0px; color: royalblue">日本語の単語練習</span>
   </div>
 
   <div class="testControls">
@@ -110,7 +187,9 @@
         <div class="optionBoxParent"><div class="optionBox">
             <p><b>Display:</b></p>
             {{range $4}}
-              <input type="radio" name={{.Name}} value="{{.Value}}" id={{.Value}} {{if .IsChecked}} checked="true" {{end}}> {{.Text}}
+              <input type="radio" name={{.Name}} value="{{.Value}}" id={{.Value}} class="regular-radio" {{if .IsChecked}} checked="true" {{end}}>
+              <label for="{{.Value}}"></label>
+              <span style="font-size: 18pt; padding-right: 10px">{{.Text}}</span>
             {{end}}
           </div>
         </div>
@@ -119,10 +198,12 @@
       {{with $1:=.WordOptionButtons}}
         <div class="optionBoxParent"><div class="optionBox">
             <p><b>Word Types:</b></p>
-            <input type="button" name="uncheckAllWordTypes" value="Uncheck All" id="checkAllButton">
-            <input type="button" name="checkAllWordTypes" value="Check All" id="uncheckAllButton">
+            <input type="button" name="uncheckAllWordTypes" value="Uncheck All" id="uncheckAllButton">
+            <input type="button" name="checkAllWordTypes" value="Check All" id="checkAllButton">
             {{range $1}}
-              <input type="checkbox" name={{.Name}} value={{.Value}} {{if .IsDisabled}} disabled=true {{end}} {{if .IsChecked}} checked{{end}}> {{.Text}}
+              <input type="checkbox" name={{.Name}} value={{.Value}} id="cb{{.Name}}" class="regular-checkbox big-checkbox" {{if .IsDisabled}} disabled=true {{end}} {{if .IsChecked}} checked{{end}}> 
+              <label for="cb{{.Name}}"></label>
+              <span style="font-size: 18pt; padding-right: 20px">{{.Text}}</span>
             {{end}}
           </div>
         </div>
@@ -131,10 +212,12 @@
       {{with $2:=.PolitenessOptionButtons}}
         <div class="optionBoxParent"><div class="optionBox">
             <p><b>Verb Politeness Level:</b></p>
-            <input type="button" name="uncheckAllVerbPoliteness" value="Uncheck All" id="checkAllButton">
-            <input type="button" name="checkAllVerbPoliteness" value="Check All" id="uncheckAllButton">
+            <input type="button" name="uncheckAllVerbPoliteness" value="Uncheck All" id="uncheckAllButton">
+            <input type="button" name="checkAllVerbPoliteness" value="Check All" id="checkAllButton">
             {{range $2}}
-              <input type="checkbox" name={{.Name}} value={{.Value}} {{if .IsDisabled}} disabled=true {{end}} {{if .IsChecked}} checked{{end}}> {{.Text}}
+              <input type="checkbox" name={{.Name}} value={{.Value}} id="cb{{.Name}}" class="regular-checkbox" {{if .IsDisabled}} disabled=true {{end}} {{if .IsChecked}} checked{{end}}>
+              <label for="cb{{.Name}}"></label>
+              <span style="font-size: 18pt; padding-right: 20px">{{.Text}}</span>
             {{end}}
           </div>
         </div>
@@ -143,10 +226,15 @@
       {{with $3:=.FormOptionButtons}}
         <div class="optionBoxParent"><div class="optionBox">
             <p><b>Verb Form:</b></p>
-            <input type="button" name="uncheckAllVerbForms" value="Uncheck All" id="checkAllButton">
-            <input type="button" name="checkAllVerbForms" value="Check All" id="uncheckAllButton">
+            <input type="button" name="uncheckAllVerbForms" value="Uncheck All" id="uncheckAllButton">
+            <input type="button" name="checkAllVerbForms" value="Check All" id="checkAllButton">
+            <br>
             {{range $3}}
-              <input type="checkbox" name={{.Name}} value={{.Value}} {{if .IsDisabled}} disabled=true {{end}} {{if .IsChecked}} checked{{end}}> {{.Text}}
+              <span style="background-color: #ffffff; display: inline-block; position: relative; ">
+                <input type="checkbox" name={{.Name}} value={{.Value}} id="cb{{.Name}}" class="regular-checkbox" {{if .IsDisabled}} disabled=true {{end}} {{if .IsChecked}} checked{{end}}>
+                <label for="cb{{.Name}}"></label>
+                <span style="font-size: 18pt; padding-right: 20px">{{.Text}}</span>
+              </span>
             {{end}}
           </div>
         </div>

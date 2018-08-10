@@ -82,8 +82,8 @@ const (
 )
 
 const (
-	present         = "Present-Future"
-	presentNegative = "Present-Future Negative"
+	present         = "Present"
+	presentNegative = "Present Negative"
 	past            = "Past"
 	pastNegative    = "Past Negative"
 	te              = "Te"

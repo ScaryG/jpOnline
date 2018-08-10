@@ -331,6 +331,9 @@ func createIrregularVerbAnswer(wordInfo *WordData, inputString string, politenes
 	switch inputString {
 
 	case "ある":
+		createAruIruAnswer(wordInfo, inputString, politeness, formData)
+		break
+
 	case "いる":
 		createAruIruAnswer(wordInfo, inputString, politeness, formData)
 		break
@@ -553,7 +556,9 @@ func createVerbTeForm(wordInfo *WordData, inputString string) {
 		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "いて")
 	} else if lastChar == 'ぐ' {
 		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "いで")
-	} else if wordInfo.Subtype == "する" || lastChar == 'す' {
+	} else if lastChar == 'す' {
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "して")
+	} else if wordInfo.Subtype == "する" {
 		addVerbSuffix(inputString, &wordInfo.TestAnswer, 2, "して")
 	}
 }
