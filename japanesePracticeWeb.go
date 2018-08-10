@@ -78,7 +78,7 @@ const (
 const (
 	casual   = "Casual"
 	polite   = "Polite"
-	agnostic = "Agnostic"
+	agnostic = "None"
 )
 
 const (
