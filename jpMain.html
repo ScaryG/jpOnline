@@ -13,7 +13,6 @@
   h3 { font-size: 14pt; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -20px }
   h4 { font-size: 12pt; font-style: italic; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -12px }
   j2 { font-size: 32pt; font-weight: bold; text-align: center; padding-bottom: 24px; margin-top: 16px; color: mediumblue; position: relative; top: -20px }
-  #checks { font-size: 24pt; }
   #wordSpan0 { font-size: 14pt; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -12px }
   #wordSpan1 { font-size: 14pt; font-weight: bold; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -12px }
   #buttonParentBox { text-align: center; position: relative; min-height: 310px; width: 50%; background: white; display: inline-block; padding: 0px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
@@ -28,80 +27,90 @@
   .button1 { width: 50%; height: 50px; background:radial-gradient(white, lightyellow); font-size: 16pt; font-weight: bold }
   .button2 { width: 25%; height: 50px; position: absolute; top: 240px; left: 0; right: 0; margin: auto}
 
-  .regular-checkbox {
-    display: none;
-  }
+  .radioOptionText { font-size: 12pt; padding-right: 10px }
+  .optionText { font-size: 12pt; padding-right: 10px }
 
-  .regular-checkbox + label {
-    background-color: #fafafa;
-    border: 1px solid #cacece;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
-    padding: 9px;
-    border-radius: 3px;
-    display: inline-block;
-    position: relative;
-    top: 2px;
-  }
+  @media (max-width:480px) {
 
-  .regular-checkbox + label:active, .regular-checkbox:checked + label:active {
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
-  }
+    #wordSpan0 { font-size: 14pt; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -12px }
+    #wordSpan1 { font-size: 14pt; font-weight: bold; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -12px }
+  
+    .radioOptionText { font-size: 18pt; padding-right: 10px }
+    .optionText { font-size: 18pt; padding-right: 20px }
 
-  .regular-checkbox:checked + label {
-    background-color: #d6e6f1;
-    border: 1px solid #adb8c0;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
-  }
+    .regular-checkbox { display: none; }
 
-  .regular-checkbox:checked + label:after {
-    content: '\2714';
-    font-size: 14px;
-    position: absolute;
-    top: 0px;
-    left: 3px;
-    color: #0091ff;
-  }
+    .regular-checkbox + label {
+      background-color: #fafafa;
+      border: 1px solid #cacece;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+      padding: 9px;
+      border-radius: 3px;
+      display: inline-block;
+      position: relative;
+      top: 2px;
+    }
 
-  /* RADIO */
+    .regular-checkbox + label:active, .regular-checkbox:checked + label:active {
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+    }
 
-  .regular-radio {
-    display: none;
-  }
+    .regular-checkbox:checked + label {
+      background-color: #d6e6f1;
+      border: 1px solid #adb8c0;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+    }
 
-  .regular-radio + label {
-    -webkit-appearance: none;
-    background-color: #fafafa;
-    border: 1px solid #cacece;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
-    padding: 9px;
-    border-radius: 50px;
-    display: inline-block;
-    position: relative;
-    top: 2px;
-  }
+    .regular-checkbox:checked + label:after {
+      content: '\2714';
+      font-size: 14px;
+      position: absolute;
+      top: 0px;
+      left: 3px;
+      color: #0091ff;
+    }
 
-  .regular-radio:checked + label:before {
-    content: ' ';
-    width: 12px;
-    height: 12px;
-    border-radius: 50px;
-    position: absolute;
-    top: 3px;
-    background: #0091ff;
-    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3);
-    text-shadow: 0px;
-    left: 3px;
-    font-size: 32px;
-  }
+    /* RADIO */
 
-  .regular-radio:checked + label {
-    background-color: #d6e6f1;
-    border: 1px solid #adb8c0;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1), inset 0px 0px 10px rgba(0,0,0,0.1);
-  }
+    .regular-radio {
+      display: none;
+    }
 
-  .regular-radio + label:active, .regular-radio:checked + label:active {
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+    .regular-radio + label {
+      -webkit-appearance: none;
+      background-color: #fafafa;
+      border: 1px solid #cacece;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+      padding: 9px;
+      border-radius: 50px;
+      display: inline-block;
+      position: relative;
+      top: 2px;
+    }
+
+    .regular-radio:checked + label:before {
+      content: ' ';
+      width: 12px;
+      height: 12px;
+      border-radius: 50px;
+      position: absolute;
+      top: 3px;
+      background: #0091ff;
+      box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3);
+      text-shadow: 0px;
+      left: 3px;
+      font-size: 32px;
+    }
+
+    .regular-radio:checked + label {
+      background-color: #d6e6f1;
+      border: 1px solid #adb8c0;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1), inset 0px 0px 10px rgba(0,0,0,0.1);
+    }
+
+    .regular-radio + label:active, .regular-radio:checked + label:active {
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+    }
   }
 </style>
 </head>
@@ -205,7 +214,7 @@
             {{range $4}}
               <input type="radio" name={{.Name}} value="{{.Value}}" id={{.Value}} class="regular-radio" {{if .IsChecked}} checked="true" {{end}}>
               <label for="{{.Value}}"></label>
-              <span style="font-size: 18pt; padding-right: 10px">{{.Text}}</span>
+              <span class="radioOptionText">{{.Text}}</span>
             {{end}}
           </div>
         </div>
@@ -219,7 +228,7 @@
             {{range $1}}
               <input type="checkbox" name={{.Name}} value={{.Value}} id="cb{{.Name}}" class="regular-checkbox big-checkbox" {{if .IsDisabled}} disabled=true {{end}} {{if .IsChecked}} checked{{end}}> 
               <label for="cb{{.Name}}"></label>
-              <span style="font-size: 18pt; padding-right: 20px">{{.Text}}</span>
+              <span class="optionText">{{.Text}}</span>
             {{end}}
           </div>
         </div>
@@ -233,7 +242,7 @@
             {{range $2}}
               <input type="checkbox" name={{.Name}} value={{.Value}} id="cb{{.Name}}" class="regular-checkbox" {{if .IsDisabled}} disabled=true {{end}} {{if .IsChecked}} checked{{end}}>
               <label for="cb{{.Name}}"></label>
-              <span style="font-size: 18pt; padding-right: 20px">{{.Text}}</span>
+              <span class="optionText">{{.Text}}</span>
             {{end}}
           </div>
         </div>
@@ -249,7 +258,7 @@
               <span style="background-color: #ffffff; display: inline-block; position: relative; ">
                 <input type="checkbox" name={{.Name}} value={{.Value}} id="cb{{.Name}}" class="regular-checkbox" {{if .IsDisabled}} disabled=true {{end}} {{if .IsChecked}} checked{{end}}>
                 <label for="cb{{.Name}}"></label>
-                <span style="font-size: 18pt; padding-right: 20px">{{.Text}}</span>
+                <span class="optionText">{{.Text}}</span>
               </span>
             {{end}}
           </div>
@@ -266,7 +275,7 @@
               <span style="background-color: #ffffff; display: inline-block; position: relative; ">
                 <input type="checkbox" name={{.Name}} value={{.Value}} id="cb{{.Name}}" class="regular-checkbox" {{if .IsDisabled}} disabled=true {{end}} {{if .IsChecked}} checked{{end}}>
                 <label for="cb{{.Name}}"></label>
-                <span style="font-size: 18pt; padding-right: 20px">{{.Text}}</span>
+                <span class="optionText">{{.Text}}</span>
               </span>
             {{end}}
           </div>
