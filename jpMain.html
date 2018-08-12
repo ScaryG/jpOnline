@@ -23,7 +23,6 @@
   #headerDiv { width: 100%; display: inline-block; margin-bottom: 0px; background-color: white; margin-bottom: 12px; border-bottom-color: royalblue; border-bottom-width: 2px; border-bottom-style: solid }
   .optionBoxParent { text-align: center }
   .optionBox { width: 80%; background: white; display: inline-block; text-align: left; padding: 16px; padding-top: 0px; border-style:solid; border-color: #ebebeb; border-width: 1px }
-  .testBox { width: 80%; background: white; display: inline-block; text-align: center; padding: 16px; border-style:solid; border-color: #ebebeb; border-width: 1px; white-space: nowrap; }
   .button1 { width: 50%; height: 50px; background:radial-gradient(white, lightyellow); font-size: 16pt; font-weight: bold }
   .button2 { width: 25%; height: 50px; position: absolute; top: 240px; left: 0; right: 0; margin: auto}
 
@@ -32,12 +31,18 @@
 
   @media (max-width:480px) {
 
-    #wordSpan0 { font-size: 14pt; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -12px }
-    #wordSpan1 { font-size: 14pt; font-weight: bold; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -12px }
-  
     .radioOptionText { font-size: 18pt; padding-right: 10px }
     .optionText { font-size: 18pt; padding-right: 20px }
 
+    #wordSpan0 { font-size: 14pt; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -12px }
+    #wordSpan1 { font-size: 14pt; font-weight: bold; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -12px }
+    #buttonParentBox { text-align: center; position: relative; min-height: 320px; width: 100%; background: white; display: inline-block; padding: 0px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+    #counterSpan { text-align: right; width: 98%; display: inline-block; margin-bottom: 0px; font-size: 14pt; font-style: italic; position: relative; top: 5px }
+    .optionBox { width: 80%; background: white; display: inline-block; text-align: left; padding: 16px; padding-top: 0px; border-style:solid; border-color: #ebebeb; border-width: 1px }
+    h2 { font-size: 38pt; font-weight: bold; text-align: center; margin-bottom: 4px; margin-top: 16px; position: relative; top: -20px }
+    h3 { font-size: 24pt; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -20px }
+    .button2 { width: 25%; height: 50px; position: absolute; top: 250px; left: 0; right: 0; margin: auto}
+  
     .regular-checkbox { display: none; }
 
     .regular-checkbox + label {
@@ -387,7 +392,12 @@
             var lbr = document.createElement("br");
             wordSpan0.appendChild(lbr);
 
-            var wordText2 = document.createTextNode("Base verb: ");
+            var wordTypeName = "verb";
+            if (wordData[index].WordType == 1) {
+                wordTypeName = "adjective";
+            }
+
+            var wordText2 = document.createTextNode("Base " + wordTypeName + ": ");
             wordText2.id = "japaneseTextBaseVerb";
             wordSpan0.appendChild(wordText2);
             containerDiv.appendChild(wordSpan0);
@@ -402,7 +412,12 @@
 
             var wordText3 = document.createElement("h4");
             wordText3.id = "japaneseTextBaseVerbSubtype";
-            wordText3.textContent = "(" + wordData[index].Subtype + " verb" + ")";
+
+            if (wordData[index].WordType == 0) {
+                wordText3.textContent = "(" + wordData[index].Subtype + " verb" + ")";
+            } else if (wordData[index].WordType == 1) {
+                wordText3.textContent = "(" + wordData[index].Subtype + ")";
+            }
             containerDiv.appendChild(wordText3);
 
             var button = document.createElement("input");

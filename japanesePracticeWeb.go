@@ -448,7 +448,8 @@ func RunTest(form url.Values) ([]WordData, []string) {
 		// Form failsafe
 		if numAdjectiveForms == 0 {
 			// Give us one form if none have been selected
-			allowedAdjectiveForms = append(allowedAdjectiveForms, jp.db.adjectiveFormData[0])
+			displayForm := s.Replace(jp.db.adjectiveFormData[0], adjectiveFormPrefix, "", 1)
+			allowedAdjectiveForms = append(allowedAdjectiveForms, displayForm)
 			numAdjectiveForms = 1
 		}
 	}

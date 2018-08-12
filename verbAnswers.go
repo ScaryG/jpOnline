@@ -16,6 +16,13 @@ func isVerbIrregular(base string, subType string) bool {
 
 func addVerbSuffix(inputString string, outputString *string, numRunesToRemove int, suffix string) {
 
+	if numRunesToRemove == 0 {
+
+		*outputString = inputString
+		*outputString += suffix
+		return
+	}
+
 	numRunesInWord := utf8.RuneCountInString(inputString)
 
 	var numRunes int
