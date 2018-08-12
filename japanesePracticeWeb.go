@@ -58,14 +58,15 @@ type OptionButton struct {
 }
 
 type TestVariables struct {
-	PageTitle               string
-	DisplayOptionButtons    []OptionButton
-	WordOptionButtons       []OptionButton
-	PolitenessOptionButtons []OptionButton
-	FormOptionButtons       []OptionButton
-	TestButtonDisabled      bool
-	TestWords               []WordData
-	TestForms               []string
+	PageTitle                  string
+	DisplayOptionButtons       []OptionButton
+	WordOptionButtons          []OptionButton
+	PolitenessOptionButtons    []OptionButton
+	FormOptionButtons          []OptionButton
+	AdjectiveFormOptionButtons []OptionButton
+	TestButtonDisabled         bool
+	TestWords                  []WordData
+	TestForms                  []string
 }
 
 const (
@@ -73,6 +74,13 @@ const (
 	adjective      = iota
 	verbForms      = iota
 	adjectiveForms = iota
+)
+
+const (
+	verbSheet          = "verbs"
+	verbFormSheet      = "verbforms"
+	adjectiveSheet     = "adjectives"
+	adjectiveFormSheet = "adjectiveforms"
 )
 
 const (
@@ -90,6 +98,8 @@ const (
 	potential       = "Potential"
 	volitional      = "Volitional"
 	want            = "Want"
+
+	adjectiveFormPrefix = "adj-"
 )
 
 const (
@@ -130,7 +140,6 @@ func main() {
 
 	http.HandleFunc("/", DisplayOptionButtons)
 	http.HandleFunc("/controls", WordTypeSelected)
-	//http.HandleFunc("/runtest", RunTest)
 
 	log.Fatal(http.ListenAndServe(getPort(), nil))
 
@@ -163,13 +172,13 @@ func (db *wordDb) PopulateWordDatabase(jp japanesePracticeWeb) bool {
 		sheetName = s.ToLower(sheetName)
 
 		var wordType int
-		if s.Contains(sheetName, "verbforms") {
+		if s.Contains(sheetName, verbFormSheet) {
 			wordType = verbForms
-		} else if s.Contains(sheetName, "adjectiveforms") {
+		} else if s.Contains(sheetName, adjectiveFormSheet) {
 			wordType = adjectiveForms
-		} else if s.Contains(sheetName, "verb") {
+		} else if s.Contains(sheetName, verbSheet) {
 			wordType = verb
-		} else if s.Contains(sheetName, "adjective") {
+		} else if s.Contains(sheetName, adjectiveSheet) {
 			wordType = adjective
 		}
 
@@ -209,6 +218,8 @@ func (db *wordDb) PopulateWordDatabase(jp japanesePracticeWeb) bool {
 				newWord.English = row[0].(string)
 				newWord.Subtype = row[1].(string)
 				newWord.Japanese = row[2].(string)
+				newWord.Kanji = row[3].(string)
+				newWord.JlptLevel, _ = strconv.Atoi(row[4].(string))
 				db.wordData = append(db.wordData, newWord)
 				break
 
@@ -227,11 +238,12 @@ func (db *wordDb) PopulateWordDatabase(jp japanesePracticeWeb) bool {
 
 			case adjectiveForms:
 				if len(row[0].(string)) > 0 {
-					db.adjectiveFormData = append(db.adjectiveFormData, row[0].(string))
+					db.adjectiveFormData = append(db.adjectiveFormData, adjectiveFormPrefix+row[0].(string))
 				}
 				break
 			}
 
+			// Failsafe
 			if i == 10000 {
 				break
 			}
@@ -312,29 +324,43 @@ func SetupVerbOptions(politenessData []string, formData []string) ([]OptionButto
 	numVerbForms := len(jp.db.verbFormData)
 	formOptionButtons := make([]OptionButton, 0)
 	for i := 0; i < numVerbForms; i++ {
-		newButton := OptionButton{SanitizeHtmlName(jp.db.verbFormData[i].form), jp.db.verbFormData[i].form, false, formData[i] != "", jp.db.verbFormData[i].form}
+		formName := jp.db.verbFormData[i].form
+		newButton := OptionButton{SanitizeHtmlName(formName), formName, false, formData[i] != "", formName}
 		formOptionButtons = append(formOptionButtons, newButton)
 	}
 
 	return politenessOptionButtons, formOptionButtons
 }
 
-func SetupAdjectiveOptions() []OptionButton {
-	return nil
+func SetupAdjectiveOptions(formData []string) []OptionButton {
+
+	numAdjectiveForms := len(jp.db.adjectiveFormData)
+	formOptionButtons := make([]OptionButton, 0)
+	for i := 0; i < numAdjectiveForms; i++ {
+		formName := jp.db.adjectiveFormData[i]
+		displayFormName := s.Replace(formName, adjectiveFormPrefix, "", 1)
+		newButton := OptionButton{SanitizeHtmlName(formName), formName, false, formData[i] != "", displayFormName}
+		formOptionButtons = append(formOptionButtons, newButton)
+	}
+
+	return formOptionButtons
 }
 
 // RunTest builds the word list from the requested options
 func RunTest(form url.Values) ([]WordData, []string) {
 
 	verbOption := form.Get("wordVerb")
-	//adjectiveOption := form.Get("wordAdjective")
+	adjectiveOption := form.Get("wordAdjective")
 
-	// Build word list (TODO: from options)
+	// Build word list
 	outputWords := make([]WordData, 0)
 	outputForms := make([]string, 0)
 
 	for i := 0; i < len(jp.db.wordData)-1; i++ {
-		outputWords = append(outputWords, jp.db.wordData[i])
+
+		if (verbOption != "" && jp.db.wordData[i].WordType == verb) || (adjectiveOption != "" && jp.db.wordData[i].WordType == adjective) {
+			outputWords = append(outputWords, jp.db.wordData[i])
+		}
 	}
 
 	// Randomize the word list
@@ -403,6 +429,37 @@ func RunTest(form url.Values) ([]WordData, []string) {
 		}
 	}
 
+	numAdjectiveForms := 0
+	allowedAdjectiveForms := make([]string, 0)
+	if adjectiveOption != "" {
+
+		// Adjective form options
+		numFormsOptions := len(jp.db.adjectiveFormData)
+
+		for j := 0; j < numFormsOptions; j++ {
+			option := form.Get(SanitizeHtmlName(jp.db.adjectiveFormData[j]))
+			if option != "" {
+				displayForm := s.Replace(jp.db.adjectiveFormData[j], adjectiveFormPrefix, "", 1)
+				allowedAdjectiveForms = append(allowedAdjectiveForms, displayForm)
+			}
+		}
+		numAdjectiveForms = len(allowedAdjectiveForms)
+
+		// Form failsafe
+		if numAdjectiveForms == 0 {
+			// Give us one form if none have been selected
+			allowedAdjectiveForms = append(allowedAdjectiveForms, jp.db.adjectiveFormData[0])
+			numAdjectiveForms = 1
+		}
+	}
+
+	// Pass Kanji flag into answer routines
+	displayOption := form.Get("displayRadio")
+	var showKanji bool
+	if displayOption == "kanji" {
+		showKanji = true
+	}
+
 	// Loop over the list and setup the politeness/form strings and answers
 	for i := 0; i < len(outputWords); i++ {
 
@@ -428,14 +485,16 @@ func RunTest(form url.Values) ([]WordData, []string) {
 			question += formData.form
 			question += " form"
 
-			// Pass Kanji flag into answer routines
-			displayOption := form.Get("displayRadio")
-			var showKanji bool
-			if displayOption == "kanji" {
-				showKanji = true
-			}
-
 			createVerbAnswer(&outputWords[i], politeness, formData, showKanji)
+
+		} else if wordInfo.WordType == adjective {
+
+			formData := allowedAdjectiveForms[rand.Intn(numAdjectiveForms)]
+
+			question += formData
+			question += " form"
+
+			createAdjectiveAnswer(&outputWords[i], formData, showKanji)
 		}
 
 		outputForms = append(outputForms, question)
@@ -483,10 +542,19 @@ func WordTypeSelected(w http.ResponseWriter, r *http.Request) {
 	}
 
 	hasAdjectives := false
-	// var adjectiveOptionButtons []OptionButton
-	if s.Contains(adjectiveOption, "djective") {
+	var adjectiveFormOptionButtons []OptionButton
+
+	if adjectiveOption != "" {
+
 		hasAdjectives = true
-		// adjectiveOptionButtons = SetupAdjectiveOptions()
+
+		numAdjectiveFormOptions := len(jp.db.adjectiveFormData)
+		adjectiveFormOptionData := make([]string, 0)
+		for i := 0; i < numAdjectiveFormOptions; i++ {
+			adjectiveFormOptionData = append(adjectiveFormOptionData, r.Form.Get(SanitizeHtmlName(jp.db.adjectiveFormData[i])))
+		}
+
+		adjectiveFormOptionButtons = SetupAdjectiveOptions(adjectiveFormOptionData)
 	}
 
 	wordOptionButtons := SetupWordOptions(hasVerbs, hasAdjectives)
@@ -496,67 +564,27 @@ func WordTypeSelected(w http.ResponseWriter, r *http.Request) {
 
 	var MyTestVariables TestVariables
 
+	if !hasVerbs && !hasAdjectives {
+		MyTestVariables.TestButtonDisabled = true
+	}
+
+	MyTestVariables.PageTitle = Title
+	MyTestVariables.DisplayOptionButtons = displayOptionButtons
+	MyTestVariables.WordOptionButtons = wordOptionButtons
+
+	if hasVerbs {
+		MyTestVariables.PolitenessOptionButtons = politenessOptionButtons
+		MyTestVariables.FormOptionButtons = formOptionButtons
+	}
+
+	if hasAdjectives {
+		MyTestVariables.AdjectiveFormOptionButtons = adjectiveFormOptionButtons
+	}
+
 	if runTest {
-		if hasVerbs && hasAdjectives {
-			MyTestVariables = TestVariables{
-				PageTitle:               Title,
-				DisplayOptionButtons:    displayOptionButtons,
-				WordOptionButtons:       wordOptionButtons,
-				PolitenessOptionButtons: politenessOptionButtons,
-				FormOptionButtons:       formOptionButtons,
-				TestButtonDisabled:      false,
-				TestWords:               testWords,
-				TestForms:               testForms,
-				// Adjective form options go here
-			}
-		} else if hasVerbs && !hasAdjectives {
-			MyTestVariables = TestVariables{
-				PageTitle:               Title,
-				DisplayOptionButtons:    displayOptionButtons,
-				WordOptionButtons:       wordOptionButtons,
-				PolitenessOptionButtons: politenessOptionButtons,
-				FormOptionButtons:       formOptionButtons,
-				TestButtonDisabled:      false,
-				TestWords:               testWords,
-				TestForms:               testForms,
-			}
-		} else if !hasVerbs {
-			MyTestVariables = TestVariables{
-				PageTitle:            Title,
-				DisplayOptionButtons: displayOptionButtons,
-				WordOptionButtons:    wordOptionButtons,
-				TestButtonDisabled:   false,
-				TestWords:            testWords,
-				TestForms:            testForms,
-			}
-		}
-	} else {
-		if hasVerbs && hasAdjectives {
-			MyTestVariables = TestVariables{
-				PageTitle:               Title,
-				DisplayOptionButtons:    displayOptionButtons,
-				WordOptionButtons:       wordOptionButtons,
-				PolitenessOptionButtons: politenessOptionButtons,
-				FormOptionButtons:       formOptionButtons,
-				TestButtonDisabled:      false,
-			}
-		} else if hasVerbs && !hasAdjectives {
-			MyTestVariables = TestVariables{
-				PageTitle:               Title,
-				DisplayOptionButtons:    displayOptionButtons,
-				WordOptionButtons:       wordOptionButtons,
-				PolitenessOptionButtons: politenessOptionButtons,
-				FormOptionButtons:       formOptionButtons,
-				TestButtonDisabled:      false,
-			}
-		} else if !hasVerbs {
-			MyTestVariables = TestVariables{
-				PageTitle:            Title,
-				DisplayOptionButtons: displayOptionButtons,
-				WordOptionButtons:    wordOptionButtons,
-				TestButtonDisabled:   true,
-			}
-		}
+
+		MyTestVariables.TestWords = testWords
+		MyTestVariables.TestForms = testForms
 	}
 
 	// generate page by passing page variables into template

@@ -146,6 +146,14 @@
     {{end}}
    });
 
+   $('input[name=checkAllAdjectiveForms]').click(function(){
+    {{with $1:=.AdjectiveFormOptionButtons}}
+      {{range $1}}
+        $('input[name={{.Name}}]').prop('checked', true);
+      {{end}}
+    {{end}}
+   });
+
    $('input[name=uncheckAllWordTypes]').click(function(){
     {{with $1:=.WordOptionButtons}}
       {{range $1}}
@@ -165,6 +173,14 @@
 
    $('input[name=uncheckAllVerbForms]').click(function(){
     {{with $1:=.FormOptionButtons}}
+      {{range $1}}
+        $('input[name={{.Name}}]').prop('checked', false);
+      {{end}}
+    {{end}}
+   });
+
+   $('input[name=uncheckAllAdjectiveForms]').click(function(){
+    {{with $1:=.AdjectiveFormOptionButtons}}
       {{range $1}}
         $('input[name={{.Name}}]').prop('checked', false);
       {{end}}
@@ -240,6 +256,23 @@
         </div>
       {{end}}
 
+      {{with $5:=.AdjectiveFormOptionButtons}}
+        <div class="optionBoxParent"><div class="optionBox">
+            <p><b>Adjective Form:</b></p>
+            <input type="button" name="uncheckAllAdjectiveForms" value="Uncheck All" id="uncheckAllButton">
+            <input type="button" name="checkAllAdjectiveForms" value="Check All" id="checkAllButton">
+            <br>
+            {{range $5}}
+              <span style="background-color: #ffffff; display: inline-block; position: relative; ">
+                <input type="checkbox" name={{.Name}} value={{.Value}} id="cb{{.Name}}" class="regular-checkbox" {{if .IsDisabled}} disabled=true {{end}} {{if .IsChecked}} checked{{end}}>
+                <label for="cb{{.Name}}"></label>
+                <span style="font-size: 18pt; padding-right: 20px">{{.Text}}</span>
+              </span>
+            {{end}}
+          </div>
+        </div>
+      {{end}}
+
     </form>
   </div>
 
@@ -303,7 +336,13 @@
 
               var formText = document.createElement("h3");
               formText.id = "formText";
-              formText.textContent += formData[index];
+
+              var formDisplayText = formData[index];
+              if (wordData[index].WordType == 1) {
+                  formDisplayText = formDisplayText.replace("adj-", "");
+              }
+
+              formText.textContent += formDisplayText;
               parentDiv.appendChild(formText);
 
               var button = document.createElement("input");
