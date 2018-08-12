@@ -29,7 +29,10 @@
   .radioOptionText { font-size: 12pt; padding-right: 10px }
   .optionText { font-size: 12pt; padding-right: 10px }
 
-  @media (max-width:960px) {
+  @media only screen 
+    and (max-device-width: 640px), 
+    only screen and (max-device-width: 667px), 
+    only screen and (max-width: 480px) {
 
     .radioOptionText { font-size: 18pt; padding-right: 10px }
     .optionText { font-size: 18pt; padding-right: 20px }
