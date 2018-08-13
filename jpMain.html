@@ -20,7 +20,7 @@
   #checkAllButton { background-color: #ccffcc; margin-right: 10px }
   #uncheckAllButton { background-color: #ffcccc; }
   #counterSpan { text-align: right; width: 98%; display: inline-block; margin-bottom: 0px; font-size: 12pt; font-style: italic; position: relative; top: 5px }
-  #headerDiv { width: 100%; display: inline-block; margin-bottom: 0px; background-color: white; margin-bottom: 12px; border-bottom-color: royalblue; border-bottom-width: 2px; border-bottom-style: solid }
+  #headerDiv { width: 100%; display: inline-block; margin-bottom: 0px; background-color: white; border-bottom-color: royalblue; border-bottom-width: 2px; border-bottom-style: solid; position:fixed; top:0; left:0; z-index: 1; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09); }
   .optionBoxParent { text-align: center }
   .optionBox { width: 80%; background: white; display: inline-block; text-align: left; padding: 16px; padding-top: 0px; border-style:solid; border-color: #ebebeb; border-width: 1px }
   .button1 { width: 50%; height: 50px; background:radial-gradient(white, lightyellow); font-size: 16pt; font-weight: bold }
@@ -47,7 +47,7 @@
     #wordSpan1 { font-size: 28pt; font-weight: bold; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -14px }
     #buttonParentBox { text-align: center; position: relative; min-height: 590px; width: 90%; background: white; display: inline-block; padding: 0px; box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2), 0 9px 30px 0 rgba(0, 0, 0, 0.19); }
     #checkAllButton { background-color: #ccffcc; margin-right: 20px; width:18%; height:70px; font-size: 16pt; font-weight:bold; text-align:center }
-    #uncheckAllButton { background-color: #ffcccc; width:18%; height:70px; font-size: 16pt; font-weight:bold; text-align:center }
+    #uncheckAllButton { background-color: #ffcccc; height:70px; font-size: 16pt; font-weight:bold; text-align:center }
     #counterSpan { text-align: right; width: 98%; display: inline-block; margin-bottom: 0px; font-size: 18pt; font-style: italic; position: relative; top: 5px }
     .optionBox { width: 90%; background: white; display: inline-block; text-align: left; padding: 16px; padding-top: 0px; border-style:solid; border-color: #ebebeb; border-width: 1px }
     .button1 { width: 50%; height: 150px; background:radial-gradient(white, lightyellow); font-size: 32pt; font-weight: bold }
@@ -113,7 +113,7 @@
       background: #0091ff;
       box-shadow: inset 0px 0px 16px rgba(0,0,0,0.3);
       text-shadow: 0px;
-      top: 5px;
+      top: 6px;
       left: 6px;
       font-size: 32px;
     }
@@ -216,10 +216,13 @@
 
 <body>
   <div id="headerDiv">
-    <!-- <span><h1>Japanese Vocab Practice</h1></span><span><j1>Japanese Vocab Practice</j1></span> -->
     <span style="font-size: 20pt; font-family: Arial, Helvetica, sans-serif; font-weight: bold; float: left; margin: 6px; margin-left: 110px; margin-bottom: 0px; color: royalblue">Japanese Vocab Practice</span>
     <span style="font-size: 20pt; font-family: Arial, Helvetica, sans-serif; font-weight: bold; float: right; margin: 6px; margin-right: 110px; margin-bottom: 0px; color: royalblue">日本語の単語練習</span>
   </div>
+
+  <br>
+  <br>
+  <br>
 
   <div class="testControls">
     <form action="/controls" method="post">
@@ -288,7 +291,7 @@
             <input type="button" name="checkAllAdjectiveForms" value="Check All" id="checkAllButton">
             <br>
             {{range $5}}
-              <span style="background-color: #ffffff; display: inline-block; position: relative; ">
+              <span class="optionSpan">
                 <input type="checkbox" name={{.Name}} value={{.Value}} id="cb{{.Name}}" class="regular-checkbox" {{if .IsDisabled}} disabled=true {{end}} {{if .IsChecked}} checked{{end}}>
                 <label for="cb{{.Name}}"></label>
                 <span class="optionText">{{.Text}}</span>
