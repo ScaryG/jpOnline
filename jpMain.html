@@ -17,14 +17,14 @@
   #wordSpan1 { font-size: 14pt; font-weight: bold; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -12px }
   #buttonParentBox { text-align: center; position: relative; min-height: 310px; width: 50%; background: white; display: inline-block; padding: 0px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
   #buttonBox { text-align: center }
-  #checkAllButton { background-color: #ccffcc; margin-right: 10px }
-  #uncheckAllButton { background-color: #ffcccc; }
+  #checkAllButton { background-color: #ccffcc; margin-right: 10px; border-radius: 40px;  }
+  #uncheckAllButton { background-color: #ffcccc; border-radius: 40px; }
   #counterSpan { text-align: right; width: 98%; display: inline-block; margin-bottom: 0px; font-size: 12pt; font-style: italic; position: relative; top: 5px }
   #headerDiv { width: 100%; display: inline-block; margin-bottom: 0px; background-color: white; border-bottom-color: royalblue; border-bottom-width: 2px; border-bottom-style: solid; position:fixed; top:0; left:0; z-index: 1; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09); }
   .optionBoxParent { text-align: center }
   .optionBox { width: 80%; background: white; display: inline-block; text-align: left; padding: 16px; padding-top: 0px; border-style:solid; border-color: #ebebeb; border-width: 1px }
-  .button1 { width: 50%; height: 50px; background:radial-gradient(white, lightyellow); font-size: 16pt; font-weight: bold }
-  .button2 { width: 25%; height: 50px; position: absolute; top: 240px; left: 0; right: 0; margin: auto; background: linear-gradient(#fafaff, #ccccff); }
+  .button1 { width: 50%; height: 50px; background:radial-gradient(white, lightyellow); font-size: 16pt; font-weight: bold; border-radius: 40px; }
+  .button2 { width: 25%; height: 50px; position: absolute; top: 240px; left: 0; right: 0; margin: auto; background: linear-gradient(#fafaff, #ccccff); border-radius: 40px; }
 
   .radioOptionText { font-size: 12pt; padding-right: 10px }
   .optionText { font-size: 12pt; padding-right: 10px; }
@@ -51,15 +51,17 @@
     #wordSpan0 { font-size: 28pt; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -14px }
     #wordSpan1 { font-size: 28pt; font-weight: bold; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -14px }
     #buttonParentBox { text-align: center; position: relative; min-height: 590px; width: 90%; background: white; display: inline-block; padding: 0px; box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2), 0 14px 44px 0 rgba(0, 0, 0, 0.19); }
-    #checkAllButton { background-color: #ccffcc; margin-right: 20px; width:18%; height:70px; font-size: 16pt; font-weight:bold; text-align:center }
-    #uncheckAllButton { background-color: #ffcccc; width:19%; height:70px; font-size: 16pt; font-weight:bold; text-align:center }
+    #checkAllButton { background-color: #ccffcc; margin-right: 20px; width:18%; height:70px; font-size: 16pt; font-weight:bold; text-align:center; border-radius: 40px;  }
+    #uncheckAllButton { background-color: #ffcccc; width:19%; height:70px; font-size: 16pt; font-weight:bold; text-align:center; border-radius: 40px;  }
     #counterSpan { text-align: right; width: 98%; display: inline-block; margin-bottom: 0px; font-size: 18pt; font-style: italic; position: relative; top: 5px }
     #headerDiv { width: 100%; display: inline-block; margin-bottom: 0px; background-color: white; border-bottom-color: royalblue; border-bottom-width: 2px; border-bottom-style: solid; position:fixed; top:0; left:0; z-index: 1; box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19); }
     .optionBox { width: 90%; background: white; display: inline-block; text-align: left; padding: 16px; padding-top: 0px; padding-bottom:24px; border-style:solid; border-color: #ebebeb; border-width: 1px }
-    .button1 { width: 50%; height: 150px; background:radial-gradient(white, lightyellow); font-size: 32pt; font-weight: bold }
-    .button2 { width: 50%; height: 100px; position: absolute; top: 450px; left: 0; right: 0; margin: auto; font-size: 32pt; font-weight: bold; background: linear-gradient(#fafaff, #ccccff); }
+    .button1 { width: 50%; height: 150px; background:radial-gradient(white, lightyellow); font-size: 32pt; font-weight: bold; border-radius: 40px;  }
+    .button2 { width: 50%; height: 100px; position: absolute; top: 450px; left: 0; right: 0; margin: auto; font-size: 32pt; font-weight: bold; background: linear-gradient(#fafaff, #ccccff); border-radius: 40px; }
     .optionSpan { background-color: #ffffff; display: inline-block; position: relative; margin-top: 8px }
-  
+
+    .optionGridContainer { display: grid; margin-left: calc(5% - 16px); margin-right: calc(5% - 15px); grid-gap: 1px; grid-template-columns: 50% 50%; padding: 0px; background-color: #efeff6; position: relative !important }
+
     .regular-checkbox { display: none; }
 
     .regular-checkbox + label {
