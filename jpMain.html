@@ -35,7 +35,7 @@
     only screen and (max-width: 480px) {
 
     .radioOptionText { font-size: 28pt; padding-right: 10px }
-    .optionText { font-size: 28pt; padding-right: 20px }
+    .optionText { font-size: 28pt; padding-right: 20px; padding-top: 3px }
 
     h2 { font-size: 48pt; font-weight: bold; text-align: center; margin-bottom: 4px; margin-top: 16px; position: relative; top: -24px }
     h3 { font-size: 28pt; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -24px }
@@ -61,7 +61,7 @@
       border-radius: 4px;
       display: inline-block;
       position: relative;
-      top: 16px;
+      top: 18px;
     }
 
     .regular-checkbox + label:active, .regular-checkbox:checked + label:active {
@@ -98,7 +98,7 @@
       border-radius: 50px;
       display: inline-block;
       position: relative;
-      top: 2px;
+      top: 8px;
     }
 
     .regular-radio:checked + label:before {
@@ -110,7 +110,7 @@
       background: #0091ff;
       box-shadow: inset 0px 0px 16px rgba(0,0,0,0.3);
       text-shadow: 0px;
-      top: 7px;
+      top: 5px;
       left: 6px;
       font-size: 32px;
     }
@@ -268,7 +268,7 @@
             <input type="button" name="checkAllVerbForms" value="Check All" id="checkAllButton">
             <br>
             {{range $3}}
-              <span style="background-color: #ffffff; display: inline-block; position: relative; padding-top: 4px">
+              <span style="background-color: #ffffff; display: inline-block; position: relative; ">
                 <input type="checkbox" name={{.Name}} value={{.Value}} id="cb{{.Name}}" class="regular-checkbox" {{if .IsDisabled}} disabled=true {{end}} {{if .IsChecked}} checked{{end}}>
                 <label for="cb{{.Name}}"></label>
                 <span class="optionText">{{.Text}}</span>
