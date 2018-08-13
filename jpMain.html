@@ -24,12 +24,17 @@
   .optionBoxParent { text-align: center }
   .optionBox { width: 80%; background: white; display: inline-block; text-align: left; padding: 16px; padding-top: 0px; border-style:solid; border-color: #ebebeb; border-width: 1px }
   .button1 { width: 50%; height: 50px; background:radial-gradient(white, lightyellow); font-size: 16pt; font-weight: bold }
-  .button2 { width: 25%; height: 50px; position: absolute; top: 240px; left: 0; right: 0; margin: auto}
+  .button2 { width: 25%; height: 50px; position: absolute; top: 240px; left: 0; right: 0; margin: auto; background: linear-gradient(#fafaff, #ccccff); }
 
   .radioOptionText { font-size: 12pt; padding-right: 10px }
   .optionText { font-size: 12pt; padding-right: 10px; }
 
   .optionSpan { background-color: #ffffff; display: inline-block; position: relative; margin-top: 2px }
+
+  .optionGridContainer { display: grid; margin-left: calc(10% - 16px); margin-right: calc(10% - 15px); grid-gap: 1px; grid-template-columns: 50% 50%; padding: 0px; background-color: #efeff6; position: relative !important }
+  .optionGridDisplay { grid-column-start: 1; grid-column-end: 2; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static }
+  .optionGridLanguage { grid-column-start: 2; grid-column-end: 3; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static}
+  .optionGridWordType { grid-column-start: 1; grid-column-end: 3; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static}
 
   @media only screen 
     and (max-device-width: 640px), 
@@ -52,7 +57,7 @@
     #headerDiv { width: 100%; display: inline-block; margin-bottom: 0px; background-color: white; border-bottom-color: royalblue; border-bottom-width: 2px; border-bottom-style: solid; position:fixed; top:0; left:0; z-index: 1; box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19); }
     .optionBox { width: 90%; background: white; display: inline-block; text-align: left; padding: 16px; padding-top: 0px; padding-bottom:24px; border-style:solid; border-color: #ebebeb; border-width: 1px }
     .button1 { width: 50%; height: 150px; background:radial-gradient(white, lightyellow); font-size: 32pt; font-weight: bold }
-    .button2 { width: 50%; height: 100px; position: absolute; top: 450px; left: 0; right: 0; margin: auto; font-size: 32pt; font-weight: bold}
+    .button2 { width: 50%; height: 100px; position: absolute; top: 450px; left: 0; right: 0; margin: auto; font-size: 32pt; font-weight: bold; background: linear-gradient(#fafaff, #ccccff); }
     .optionSpan { background-color: #ffffff; display: inline-block; position: relative; margin-top: 8px }
   
     .regular-checkbox { display: none; }
@@ -228,32 +233,44 @@
   <div class="testControls">
     <form action="/controls" method="post">
 
-      {{with $4:=.DisplayOptionButtons}}
-        <div class="optionBoxParent"><div class="optionBox">
-            <p><b>Display:</b></p>
-            {{range $4}}
-              <input type="radio" name={{.Name}} value="{{.Value}}" id={{.Value}} class="regular-radio" {{if .IsChecked}} checked="true" {{end}}>
-              <label for="{{.Value}}"></label>
-              <span class="radioOptionText">{{.Text}}</span>
-            {{end}}
-          </div>
-        </div>
-      {{end}}
+      <div class="optionGridParent">
+        <div class="optionGridContainer">
+          {{with $4:=.DisplayOptionButtons}}
+            <div class="optionGridDisplay">
+              <p><b>Display:</b></p>
+              {{range $4}}
+                <input type="radio" name={{.Name}} value="{{.Value}}" id={{.Value}} class="regular-radio" {{if .IsChecked}} checked="true" {{end}}>
+                <label for="{{.Value}}"></label>
+                <span class="radioOptionText">{{.Text}}</span>
+              {{end}}
+            </div>
+          {{end}}
 
-      {{with $1:=.WordOptionButtons}}
-        <div class="optionBoxParent"><div class="optionBox">
-            <p><b>Word Types:</b></p>
-            <input type="button" name="uncheckAllWordTypes" value="Uncheck All" id="uncheckAllButton">
-            <input type="button" name="checkAllWordTypes" value="Check All" id="checkAllButton">
-            {{range $1}}
-              <input type="checkbox" name={{.Name}} value={{.Value}} id="cb{{.Name}}" class="regular-checkbox" {{if .IsDisabled}} disabled=true {{end}} {{if .IsChecked}} checked{{end}}> 
-              <label for="cb{{.Name}}"></label>
-              <span class="optionText">{{.Text}}</span>
-            {{end}}
+          <div class="optionGridLanguage">
+            <p><b>Language:</b></p>
+            <input type="radio" name="japaneseLang" value="Japanese" class="regular-radio">
+            <label for="Japanese"></label>
+            <span class="radioOptionText">Japanese</span>
+            <input type="radio" name="englishLang" value="English" class="regular-radio">
+            <label for="English"></label>
+            <span class="radioOptionText">English</span>
           </div>
+
+          {{with $1:=.WordOptionButtons}}
+            <div class="optionGridWordType">
+              <p><b>Word Types:</b></p>
+              <input type="button" name="uncheckAllWordTypes" value="Uncheck All" id="uncheckAllButton">
+              <input type="button" name="checkAllWordTypes" value="Check All" id="checkAllButton">
+              {{range $1}}
+                <input type="checkbox" name={{.Name}} value={{.Value}} id="cb{{.Name}}" class="regular-checkbox" {{if .IsDisabled}} disabled=true {{end}} {{if .IsChecked}} checked{{end}}> 
+                <label for="cb{{.Name}}"></label>
+                <span class="optionText">{{.Text}}</span>
+              {{end}}
+            </div>
+          {{end}}
         </div>
-      {{end}}
-      
+      </div>
+
       {{with $2:=.PolitenessOptionButtons}}
         <div class="optionBoxParent"><div class="optionBox">
             <p><b>Verb Politeness Level:</b></p>
