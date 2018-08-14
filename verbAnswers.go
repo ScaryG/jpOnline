@@ -445,7 +445,7 @@ func createVerbCasualPresentNegativeForm(wordInfo *WordData, inputString string,
 	} else if lastChar == 'ぶ' {
 		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "ばない")
 	} else if lastChar == 'ぬ' {
-		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "まない")
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "なない")
 	} else if lastChar == 'す' {
 		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "さない")
 	}
