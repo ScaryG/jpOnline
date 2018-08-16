@@ -43,7 +43,7 @@ func createAruIruAnswer(wordInfo *WordData, inputString string, politeness strin
 
 	case present:
 		if politeness == polite {
-			if inputString == "ある" {
+			if wordInfo.Japanese == "ある" {
 				wordInfo.TestAnswer = "あります"
 			} else {
 				wordInfo.TestAnswer = "います"
@@ -55,13 +55,13 @@ func createAruIruAnswer(wordInfo *WordData, inputString string, politeness strin
 
 	case presentNegative:
 		if politeness == polite {
-			if inputString == "ある" {
+			if wordInfo.Japanese == "ある" {
 				wordInfo.TestAnswer = "ありません"
 			} else {
 				wordInfo.TestAnswer = "いません"
 			}
 		} else if politeness == casual {
-			if inputString == "ある" {
+			if wordInfo.Japanese == "ある" {
 				wordInfo.TestAnswer = "ない"
 			} else {
 				wordInfo.TestAnswer = "いない"
@@ -71,13 +71,13 @@ func createAruIruAnswer(wordInfo *WordData, inputString string, politeness strin
 
 	case past:
 		if politeness == polite {
-			if inputString == "ある" {
+			if wordInfo.Japanese == "ある" {
 				wordInfo.TestAnswer = "ありました"
 			} else {
 				wordInfo.TestAnswer = "いました"
 			}
 		} else if politeness == casual {
-			if inputString == "ある" {
+			if wordInfo.Japanese == "ある" {
 				wordInfo.TestAnswer = "あった"
 			} else {
 				wordInfo.TestAnswer = "いた"
@@ -87,13 +87,13 @@ func createAruIruAnswer(wordInfo *WordData, inputString string, politeness strin
 
 	case pastNegative:
 		if politeness == polite {
-			if inputString == "ある" {
+			if wordInfo.Japanese == "ある" {
 				wordInfo.TestAnswer = "ありませんでした"
 			} else {
 				wordInfo.TestAnswer = "いませんでした"
 			}
 		} else if politeness == casual {
-			if inputString == "ある" {
+			if wordInfo.Japanese == "ある" {
 				wordInfo.TestAnswer = "なかった"
 			} else {
 				wordInfo.TestAnswer = "いなかった"
@@ -102,7 +102,7 @@ func createAruIruAnswer(wordInfo *WordData, inputString string, politeness strin
 		break
 
 	case te:
-		if inputString == "ある" {
+		if wordInfo.Japanese == "ある" {
 			wordInfo.TestAnswer = "あって"
 		} else {
 			wordInfo.TestAnswer = "いて"
@@ -110,7 +110,7 @@ func createAruIruAnswer(wordInfo *WordData, inputString string, politeness strin
 		break
 
 	case potential:
-		if inputString == "ある" {
+		if wordInfo.Japanese == "ある" {
 			wordInfo.TestAnswer = "あれる"
 		} else {
 			wordInfo.TestAnswer = "いられる"
@@ -119,13 +119,13 @@ func createAruIruAnswer(wordInfo *WordData, inputString string, politeness strin
 
 	case volitional:
 		if politeness == polite {
-			if inputString == "ある" {
+			if wordInfo.Japanese == "ある" {
 				wordInfo.TestAnswer = "ありましょう"
 			} else {
 				wordInfo.TestAnswer = "いましょう"
 			}
 		} else if politeness == casual {
-			if inputString == "ある" {
+			if wordInfo.Japanese == "ある" {
 				wordInfo.TestAnswer = "あろう"
 			} else {
 				wordInfo.TestAnswer = "いよう"
@@ -134,7 +134,7 @@ func createAruIruAnswer(wordInfo *WordData, inputString string, politeness strin
 		break
 
 	case want:
-		if inputString == "ある" {
+		if wordInfo.Japanese == "ある" {
 			wordInfo.TestAnswer = "ありたい"
 		} else {
 			wordInfo.TestAnswer = "いたい"
@@ -335,7 +335,7 @@ func createSuruAnswer(wordInfo *WordData, inputString string, politeness string,
 
 func createIrregularVerbAnswer(wordInfo *WordData, inputString string, politeness string, formData verbFormData) {
 
-	switch inputString {
+	switch wordInfo.Japanese {
 
 	case "ある":
 		createAruIruAnswer(wordInfo, inputString, politeness, formData)
@@ -689,7 +689,7 @@ func createVerbAnswer(wordInfo *WordData, politeness string, formData verbFormDa
 		inputString = wordInfo.Japanese
 	}
 
-	if isVerbIrregular(inputString, wordInfo.Subtype) {
+	if isVerbIrregular(wordInfo.Japanese, wordInfo.Subtype) {
 		createIrregularVerbAnswer(wordInfo, inputString, politeness, formData)
 	} else {
 
