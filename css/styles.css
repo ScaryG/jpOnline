@@ -9,6 +9,7 @@ j2 { font-size: 32pt; font-weight: bold; text-align: center; padding-bottom: 24p
 #wordSpan1 { font-size: 14pt; font-weight: bold; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: 8px }
 #buttonParentBox { text-align: center; position: relative; min-height: 310px; width: 50%; background: white; display: inline-block; padding: 0px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
 #buttonBox { text-align: center }
+#testButtonBox { text-align: center }
 #checkAllButton { background-color: #ccffcc; margin-right: 10px; border-radius: 40px;  }
 #uncheckAllButton { background-color: #ffcccc; border-radius: 40px; }
 #headerDiv { width: 100%; display: inline-block; margin-bottom: 0px; background-color: white; border-bottom-color: royalblue; border-bottom-width: 2px; border-bottom-style: solid; position:fixed; top:0; left:0; z-index: 1; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09); }

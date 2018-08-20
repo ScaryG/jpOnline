@@ -225,7 +225,7 @@
               removeElement("formText");
               removeElement("counterSpan");
               removeElement("starSpan");
-              removeElement("buttonBox");
+              removeElement("testButtonBox");
 
               var parentDiv = document.getElementById("buttonParentBox");
 
@@ -289,7 +289,7 @@
               button.onclick = Answer;
 
               var div = document.createElement("div");
-              div.id = "buttonBox";
+              div.id = "testButtonBox";
               div.appendChild(button);
               parentDiv.appendChild(div);
         }
