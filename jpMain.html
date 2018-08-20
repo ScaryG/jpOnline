@@ -3,140 +3,8 @@
 
 <head>
 <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+<link rel="stylesheet" href="/css/styles.css">
 <title>{{.PageTitle}}</title>
-
-<style>
-  body { background-color: #efeff6 }
-  h1 { font-size: 20pt; font-family: Arial, Helvetica, sans-serif; font-weight: bold; float: left; margin: 6px; margin-left: 10px; color: royalblue }
-  j1 { font-size: 20pt; font-family: Arial, Helvetica, sans-serif; font-weight: bold; float: right; margin: 6px; margin-right: 10px; color: royalblue }
-  h2 { font-size: 24pt; font-weight: bold; text-align: center; margin-bottom: 4px; margin-top: 16px; position: relative; top: -20px }
-  h3 { font-size: 14pt; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -20px }
-  h4 { font-size: 12pt; font-style: italic; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -12px }
-  j2 { font-size: 32pt; font-weight: bold; text-align: center; padding-bottom: 24px; margin-top: 16px; color: mediumblue; position: relative; top: -20px }
-  #wordSpan0 { font-size: 14pt; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -12px }
-  #wordSpan1 { font-size: 14pt; font-weight: bold; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -12px }
-  #buttonParentBox { text-align: center; position: relative; min-height: 310px; width: 50%; background: white; display: inline-block; padding: 0px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
-  #buttonBox { text-align: center }
-  #checkAllButton { background-color: #ccffcc; margin-right: 10px; border-radius: 40px;  }
-  #uncheckAllButton { background-color: #ffcccc; border-radius: 40px; }
-  #counterSpan { text-align: right; width: 98%; display: inline-block; margin-bottom: 0px; font-size: 12pt; font-style: italic; position: relative; top: 5px }
-  #headerDiv { width: 100%; display: inline-block; margin-bottom: 0px; background-color: white; border-bottom-color: royalblue; border-bottom-width: 2px; border-bottom-style: solid; position:fixed; top:0; left:0; z-index: 1; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09); }
-  .optionBoxParent { text-align: center }
-  .optionBox { width: 80%; background: white; display: inline-block; text-align: left; padding: 16px; padding-top: 0px; border-style:solid; border-color: #ebebeb; border-width: 1px }
-  .button1 { width: 50%; height: 50px; background:radial-gradient(white, lightyellow); font-size: 16pt; font-weight: bold; border-radius: 40px; }
-  .button2 { width: 25%; height: 50px; position: absolute; top: 240px; left: 0; right: 0; margin: auto; background: linear-gradient(#fafaff, #ccccff); border-radius: 40px; }
-
-  .radioOptionText { font-size: 12pt; padding-right: 10px }
-  .optionText { font-size: 12pt; padding-right: 10px; }
-
-  .optionSpan { background-color: #ffffff; display: inline-block; position: relative; margin-top: 2px }
-
-  .optionGridContainer { display: grid; margin-left: calc(10% - 16px); margin-right: calc(10% - 15px); grid-gap: 1px; grid-template-columns: 50% 50%; padding: 0px; background-color: #efeff6; position: relative !important }
-  .optionGridDisplay { grid-column-start: 1; grid-column-end: 2; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static }
-  .optionGridLanguage { grid-column-start: 2; grid-column-end: 3; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static}
-  .optionGridWordType { grid-column-start: 1; grid-column-end: 3; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static}
-
-  @media only screen 
-    and (max-device-width: 640px), 
-    only screen and (max-device-width: 667px), 
-    only screen and (max-width: 480px) {
-
-    .radioOptionText { font-size: 28pt; padding-right: 10px }
-    .optionText { font-size: 28pt; padding-right: 20px; padding-top: 3px }
-
-    h2 { font-size: 48pt; font-weight: bold; text-align: center; margin-bottom: 4px; margin-top: 16px; position: relative; top: -24px }
-    h3 { font-size: 28pt; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -24px }
-    h4 { font-size: 24pt; font-style: italic; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -14px }
-    j2 { font-size: 58pt; font-weight: bold; text-align: center; padding-bottom: 24px; margin-top: 16px; color: mediumblue; position: relative; top: -24px }
-    #wordSpan0 { font-size: 28pt; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -14px }
-    #wordSpan1 { font-size: 28pt; font-weight: bold; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: -14px }
-    #buttonParentBox { text-align: center; position: relative; min-height: 590px; width: 90%; background: white; display: inline-block; padding: 0px; box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2), 0 14px 44px 0 rgba(0, 0, 0, 0.19); }
-    #checkAllButton { background-color: #ccffcc; margin-right: 20px; width:18%; height:70px; font-size: 16pt; font-weight:bold; text-align:center; border-radius: 40px;  }
-    #uncheckAllButton { background-color: #ffcccc; width:19%; height:70px; font-size: 16pt; font-weight:bold; text-align:center; border-radius: 40px;  }
-    #counterSpan { text-align: right; width: 98%; display: inline-block; margin-bottom: 0px; font-size: 18pt; font-style: italic; position: relative; top: 5px }
-    #headerDiv { width: 100%; display: inline-block; margin-bottom: 0px; background-color: white; border-bottom-color: royalblue; border-bottom-width: 2px; border-bottom-style: solid; position:fixed; top:0; left:0; z-index: 1; box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19); }
-    .optionBox { width: 90%; background: white; display: inline-block; text-align: left; padding: 16px; padding-top: 0px; padding-bottom:24px; border-style:solid; border-color: #ebebeb; border-width: 1px }
-    .button1 { width: 50%; height: 150px; background:radial-gradient(white, lightyellow); font-size: 32pt; font-weight: bold; border-radius: 40px;  }
-    .button2 { width: 50%; height: 100px; position: absolute; top: 450px; left: 0; right: 0; margin: auto; font-size: 32pt; font-weight: bold; background: linear-gradient(#fafaff, #ccccff); border-radius: 40px; }
-    .optionSpan { background-color: #ffffff; display: inline-block; position: relative; margin-top: 8px }
-
-    .optionGridContainer { display: grid; margin-left: calc(5% - 16px); margin-right: calc(5% - 15px); grid-gap: 1px; grid-template-columns: 50% 50%; padding: 0px; background-color: #efeff6; position: relative !important }
-
-    .regular-checkbox { display: none; }
-
-    .regular-checkbox + label {
-      background-color: #fafafa;
-      border: 2px solid #cacece;
-      box-shadow: 0 2px 3px rgba(0,0,0,0.05), inset 0px -50px 32px -36px rgba(0,0,0,0.05);
-      padding: 24px;
-      border-radius: 4px;
-      display: inline-block;
-      position: relative;
-      top: 18px;
-    }
-
-    .regular-checkbox + label:active, .regular-checkbox:checked + label:active {
-      box-shadow: 0 2px 3px rgba(0,0,0,0.05), inset 0px 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .regular-checkbox:checked + label {
-      background-color: #d6e6f1;
-      border: 1px solid #adb8c0;
-      box-shadow: 0 2px 3px rgba(0,0,0,0.05), inset 0px -50px 32px -36px rgba(0,0,0,0.05), inset 50px 32px -36px rgba(255,255,255,0.1);
-    }
-
-    .regular-checkbox:checked + label:after {
-      content: '\2714';
-      font-size: 34px;
-      position: absolute;
-      top: 2px;
-      left: 6px;
-      color: #0091ff;
-    }
-
-    /* RADIO */
-
-    .regular-radio {
-      display: none;
-    }
-
-    .regular-radio + label {
-      -webkit-appearance: none;
-      background-color: #fafafa;
-      border: 2px solid #cacece;
-      box-shadow: 0 2px 3px rgba(0,0,0,0.05), inset 0px -25px 16px -18px rgba(0,0,0,0.05);
-      padding: 20px;
-      border-radius: 50px;
-      display: inline-block;
-      position: relative;
-      top: 8px;
-    }
-
-    .regular-radio:checked + label:before {
-      content: ' ';
-      width: 28px;
-      height: 28px;
-      border-radius: 50px;
-      position: absolute;
-      background: #0091ff;
-      box-shadow: inset 0px 0px 16px rgba(0,0,0,0.3);
-      text-shadow: 0px;
-      top: 6px;
-      left: 6px;
-      font-size: 32px;
-    }
-
-    .regular-radio:checked + label {
-      background-color: #d6e6f1;
-      border: 2px solid #adb8c0;
-      box-shadow: 0 2px 3px rgba(0,0,0,0.05), inset 0px -25px 16px -18px rgba(0,0,0,0.05), inset 25px 16px -18px rgba(255,255,255,0.1), inset 0px 0px 16px rgba(0,0,0,0.1);
-    }
-
-    .regular-radio + label:active, .regular-radio:checked + label:active {
-      box-shadow: 0 2px 3px rgba(0,0,0,0.05), inset 0px 2px 5px rgba(0,0,0,0.1);
-    }
-  }
-</style>
 </head>
 
 <script type='text/javascript'>
@@ -356,8 +224,28 @@
               removeElement("englishText");
               removeElement("formText");
               removeElement("counterSpan");
+              removeElement("starSpan");
+              removeElement("buttonBox");
 
               var parentDiv = document.getElementById("buttonParentBox");
+
+              // var starSpanParent = document.createElement("span");
+              // starSpanParent.id = "starSpanParent";
+
+              var starSpan = document.createElement("span");
+              starSpan.id = "starSpan";
+              var starInput = document.createElement("input");
+              starInput.setAttribute("type", "checkbox");
+              starInput.setAttribute("name", "starCheckbox1");
+              starInput.setAttribute("value", "starred");
+              starInput.setAttribute("class", "starCheckbox");
+              starInput.setAttribute("id", "starInput");
+              //starInput.setAttribute("checked", "");
+              var starLabel = document.createElement("label");
+              starLabel.setAttribute("for", "starInput");
+              starSpan.appendChild(starInput);
+              starSpan.appendChild(starLabel);
+              parentDiv.appendChild(starSpan);
 
               var counterSpan = document.createElement("span");
               counterSpan.id = "counterSpan"

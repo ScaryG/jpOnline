@@ -138,6 +138,9 @@ func main() {
 
 	rand.Seed(time.Now().UTC().UnixNano())
 
+	http.Handle("/css/", http.StripPrefix("/css/", http.FileServer(http.Dir("css"))))
+	http.Handle("/gfx/", http.StripPrefix("/gfx/", http.FileServer(http.Dir("gfx"))))
+
 	http.HandleFunc("/", DisplayOptionButtons)
 	http.HandleFunc("/controls", WordTypeSelected)
 
