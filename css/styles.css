@@ -69,7 +69,7 @@ j2 { font-size: 32pt; font-weight: bold; text-align: center; padding-bottom: 24p
   #uncheckAllButton { background-color: #ffcccc; width:19%; height:70px; font-size: 16pt; font-weight:bold; text-align:center; border-radius: 40px;  }
   #headerDiv { width: 100%; display: inline-block; margin-bottom: 0px; background-color: white; border-bottom-color: royalblue; border-bottom-width: 2px; border-bottom-style: solid; position:fixed; top:0; left:0; z-index: 1; box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19); }
   #counterSpan { text-align: right; width: 10%; margin-bottom: 0px; margin-right: 10px; font-size: 18pt; font-style: italic; position: absolute; top: 5px; right: 0px; }
-  #starSpan { text-align: left; width: 32px; height: 32px; margin-bottom: 0px; position: absolute; bottom: 26px; left: 12px; }
+  #starSpan { text-align: left; width: 64px; height: 64px; margin-bottom: 0px; position: absolute; bottom: 26px; left: 12px; }
   .optionBox { width: 90%; background: white; display: inline-block; text-align: left; padding: 16px; padding-top: 0px; padding-bottom:24px; border-style:solid; border-color: #ebebeb; border-width: 1px }
   .button1 { width: 50%; height: 150px; background:radial-gradient(white, lightyellow); font-size: 32pt; font-weight: bold; border-radius: 40px;  }
   .button2 { width: 50%; height: 100px; position: absolute; top: 450px; left: 0; right: 0; margin: auto; font-size: 32pt; font-weight: bold; background: linear-gradient(#fafaff, #ccccff); border-radius: 40px; }
@@ -80,20 +80,20 @@ j2 { font-size: 32pt; font-weight: bold; text-align: center; padding-bottom: 24p
   .starCheckbox { display: none; }
 
   .starCheckbox + label {
-    background: url("/gfx/starUnselected512.png") 0px 0px/32px 32px no-repeat;
+    background: url("/gfx/starUnselected512.png") 0px 0px/64px 64px no-repeat;
     display: inline-block;
     padding: 0px;
-    height: 32px;
-    width: 32px;
+    height: 64px;
+    width: 64px;
     z-index: 3;
   }
   
   .starCheckbox:checked + label {
-    background: url("/gfx/starSelected512.png") 0px 0px/32px 32px no-repeat;
+    background: url("/gfx/starSelected512.png") 0px 0px/64px 64px no-repeat;
     display: inline-block;
     padding: 0px;
-    height: 32px;
-    width: 32px;
+    height: 64px;
+    width: 64px;
     z-index: 3;
   }
 
