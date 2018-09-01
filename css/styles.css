@@ -25,11 +25,20 @@ j2 { font-size: 32pt; font-weight: bold; text-align: center; padding-bottom: 24p
 
 .optionSpan { background-color: #ffffff; display: inline-block; position: relative; margin-top: 2px }
 
+/*
 .optionGridContainer { display: grid; margin-left: calc(10% - 8px); margin-right: calc(9% - 3px); grid-gap: 1px; grid-template-columns: 33% 33% 33%; padding: 0px; background-color: #efeff6; position: relative !important }
 .optionGridDisplay { grid-column-start: 1; grid-column-end: 2; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static }
 .optionGridNumWords { grid-column-start: 2; grid-column-end: 3; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static}
 .optionGridLanguage { grid-column-start: 3; grid-column-end: 4; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static}
 .optionGridWordType { grid-column-start: 1; grid-column-end: 4; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static}
+*/
+
+.optionGridContainer { display: grid; margin-left: calc(5% - 8px); margin-right: calc(5% - 7px); grid-gap: 1px; grid-template-columns: 50% 50%; padding: 0px; background-color: #efeff6; position: relative !important }
+.optionGridDisplay { grid-column-start: 1; grid-column-end: 2; grid-row: 1; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static }
+.optionGridNumWords { grid-column-start: 2; grid-column-end: 3; grid-row: 1; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static}
+.optionGridLanguage { grid-column-start: 1; grid-column-end: 3; grid-row: 2; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static}
+.optionGridWordType { grid-column-start: 1; grid-column-end: 3; grid-row: 3; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static}
+
 
 .starCheckbox { display: none; }
 
@@ -77,11 +86,11 @@ j2 { font-size: 32pt; font-weight: bold; text-align: center; padding-bottom: 24p
   .optionSpan { background-color: #ffffff; display: inline-block; position: relative; margin-top: 8px }
 
   .optionGridContainer { display: grid; margin-left: calc(5% - 8px); margin-right: calc(5% - 7px); grid-gap: 1px; grid-template-columns: 50% 50%; padding: 0px; background-color: #efeff6; position: relative !important }
-  .optionGridDisplay { grid-column-start: 1; grid-column-end: 2; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static }
-  .optionGridNumWords { grid-column-start: 2; grid-column-end: 3; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static}
-  .optionGridLanguage { grid-column-start: 1; grid-column-end: 3; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static}
-  .optionGridWordType { grid-column-start: 1; grid-column-end: 3; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static}
-  
+  .optionGridDisplay  { grid-column-start: 1; grid-column-end: 2; grid-row: 1; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static }
+  .optionGridNumWords { grid-column-start: 2; grid-column-end: 3; grid-row: 1; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static}
+  .optionGridLanguage { grid-column-start: 1; grid-column-end: 3; grid-row: 2; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static}
+  .optionGridWordType { grid-column-start: 1; grid-column-end: 3; grid-row: 3; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static}
+    
   .starCheckbox { display: none; }
 
   .starCheckbox + label {
@@ -115,7 +124,7 @@ j2 { font-size: 32pt; font-weight: bold; text-align: center; padding-bottom: 24p
     display: inline-block;
     position: relative;
     top: 18px;
-    right: 8px;
+    right: 16px;
   }
 
   .regular-checkbox + label:active, .regular-checkbox:checked + label:active {
