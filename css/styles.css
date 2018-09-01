@@ -5,6 +5,7 @@ h2 { font-size: 24pt; font-weight: bold; text-align: center; margin-bottom: 4px;
 h3 { font-size: 14pt; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; }
 h4 { font-size: 12pt; font-style: italic; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: 8px }
 j2 { font-size: 32pt; font-weight: bold; text-align: center; padding-bottom: 24px; margin-top: 16px; color: mediumblue; position: relative; }
+optionHeaderText { font-size: 12pt; font-weight: bold; }
 #wordSpan0 { font-size: 14pt; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: 8px }
 #wordSpan1 { font-size: 14pt; font-weight: bold; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: 8px }
 #buttonParentBox { text-align: center; position: relative; min-height: 310px; width: 50%; background: white; display: inline-block; padding: 0px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
@@ -25,20 +26,11 @@ j2 { font-size: 32pt; font-weight: bold; text-align: center; padding-bottom: 24p
 
 .optionSpan { background-color: #ffffff; display: inline-block; position: relative; margin-top: 2px }
 
-/*
 .optionGridContainer { display: grid; margin-left: calc(10% - 8px); margin-right: calc(9% - 3px); grid-gap: 1px; grid-template-columns: 33% 33% 33%; padding: 0px; background-color: #efeff6; position: relative !important }
 .optionGridDisplay { grid-column-start: 1; grid-column-end: 2; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static }
 .optionGridNumWords { grid-column-start: 2; grid-column-end: 3; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static}
 .optionGridLanguage { grid-column-start: 3; grid-column-end: 4; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static}
 .optionGridWordType { grid-column-start: 1; grid-column-end: 4; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static}
-*/
-
-.optionGridContainer { display: grid; margin-left: calc(5% - 8px); margin-right: calc(5% - 7px); grid-gap: 1px; grid-template-columns: 50% 50%; padding: 0px; background-color: #efeff6; position: relative !important }
-.optionGridDisplay { grid-column-start: 1; grid-column-end: 2; grid-row: 1; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static }
-.optionGridNumWords { grid-column-start: 2; grid-column-end: 3; grid-row: 1; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static}
-.optionGridLanguage { grid-column-start: 1; grid-column-end: 3; grid-row: 2; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static}
-.optionGridWordType { grid-column-start: 1; grid-column-end: 3; grid-row: 3; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static}
-
 
 .starCheckbox { display: none; }
 
@@ -72,6 +64,7 @@ j2 { font-size: 32pt; font-weight: bold; text-align: center; padding-bottom: 24p
   h3 { font-size: 28pt; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: 0px }
   h4 { font-size: 24pt; font-style: italic; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: 10px }
   j2 { font-size: 58pt; font-weight: bold; text-align: center; padding-bottom: 24px; margin-top: 16px; color: mediumblue; position: relative; top: 0px }
+  optionHeaderText { font-size: 18pt; font-weight: bold; }
   #wordSpan0 { font-size: 28pt; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: 10px }
   #wordSpan1 { font-size: 28pt; font-weight: bold; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: 10px }
   #buttonParentBox { text-align: center; position: relative; min-height: 590px; width: 90%; background: white; display: inline-block; padding: 0px; box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2), 0 14px 44px 0 rgba(0, 0, 0, 0.19); }
@@ -85,7 +78,7 @@ j2 { font-size: 32pt; font-weight: bold; text-align: center; padding-bottom: 24p
   .button2 { width: 50%; height: 100px; position: absolute; top: 450px; left: 0; right: 0; margin: auto; font-size: 32pt; font-weight: bold; background: linear-gradient(#fafaff, #ccccff); border-radius: 40px; }
   .optionSpan { background-color: #ffffff; display: inline-block; position: relative; margin-top: 8px }
 
-  .optionGridContainer { display: grid; margin-left: calc(5% - 8px); margin-right: calc(5% - 7px); grid-gap: 1px; grid-template-columns: 50% 50%; padding: 0px; background-color: #efeff6; position: relative !important }
+  .optionGridContainer { display: grid; margin-left: calc(5% - 12px); margin-right: calc(5% - 11px); grid-gap: 1px; grid-template-columns: 50% 50%; padding: 0px; background-color: #efeff6; position: relative !important }
   .optionGridDisplay  { grid-column-start: 1; grid-column-end: 2; grid-row: 1; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static }
   .optionGridNumWords { grid-column-start: 2; grid-column-end: 3; grid-row: 1; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static}
   .optionGridLanguage { grid-column-start: 1; grid-column-end: 3; grid-row: 2; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static}
@@ -124,7 +117,6 @@ j2 { font-size: 32pt; font-weight: bold; text-align: center; padding-bottom: 24p
     display: inline-block;
     position: relative;
     top: 18px;
-    right: 16px;
   }
 
   .regular-checkbox + label:active, .regular-checkbox:checked + label:active {
@@ -143,6 +135,7 @@ j2 { font-size: 32pt; font-weight: bold; text-align: center; padding-bottom: 24p
     position: absolute;
     top: 2px;
     left: 6px;
+    right: 16px;
     color: #0091ff;
   }
 
