@@ -127,14 +127,22 @@
             </div>
           {{end}}
 
+          <div class="optionGridNumWords">
+            <p><b>Test Length (Words):</b></p>
+            <input type="text" name="numWords" value="50">
+          </div>
+  
           <div class="optionGridLanguage">
             <p><b>Language:</b></p>
-            <input type="radio" name="japaneseLang" value="Japanese" class="regular-radio">
+            <input type="radio" name="language" value="Japanese" class="regular-radio">
             <label for="Japanese"></label>
             <span class="radioOptionText">Japanese</span>
-            <input type="radio" name="englishLang" value="English" class="regular-radio">
+            <input type="radio" name="language" value="English" class="regular-radio">
             <label for="English"></label>
             <span class="radioOptionText">English</span>
+            <input type="radio" name="language" value="Mix" class="regular-radio">
+            <label for="Mix"></label>
+            <span class="radioOptionText">Mix</span>
           </div>
 
           {{with $1:=.WordOptionButtons}}
