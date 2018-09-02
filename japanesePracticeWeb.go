@@ -23,13 +23,14 @@ type japanesePracticeWeb struct {
 }
 
 type WordData struct {
-	WordType   int
-	English    string
-	Japanese   string
-	Kanji      string
-	Subtype    string
-	JlptLevel  int
-	TestAnswer string
+	WordType       int
+	English        string
+	Japanese       string
+	Kanji          string
+	Subtype        string
+	JlptLevel      int
+	TestAnswer     string
+	AnswerLanguage string
 }
 
 type adjectiveData struct {
@@ -330,7 +331,7 @@ func SetupWordOptions(hasVerbs bool, hasAdjectives bool) []OptionButton {
 func SetupLanguageOptions(currentLanguage string) []OptionButton {
 
 	languageOptionButtons := []OptionButton{
-		OptionButton{"languageRadio", langJapanese, false, currentLanguage == langJapanese, langJapanese},
+		OptionButton{"languageRadio", langJapanese, false, currentLanguage == langJapanese || currentLanguage == "", langJapanese},
 		OptionButton{"languageRadio", langEnglish, false, currentLanguage == langEnglish, langEnglish},
 		OptionButton{"languageRadio", langMix, false, currentLanguage == langMix, langMix},
 	}
@@ -377,6 +378,15 @@ func SetupAdjectiveOptions(formData []string) []OptionButton {
 	}
 
 	return formOptionButtons
+}
+
+func min(a, b int) int {
+
+	if a < b {
+		return a
+	}
+
+	return b
 }
 
 // RunTest builds the word list from the requested options
@@ -494,8 +504,22 @@ func RunTest(form url.Values) ([]WordData, []string) {
 		showKanji = true
 	}
 
+	selectedLanguage := form.Get("languageRadio")
+	if selectedLanguage == "" {
+		selectedLanguage = langJapanese
+	}
+
 	// Loop over the list and setup the politeness/form strings and answers
-	for i := 0; i < len(outputWords); i++ {
+	numWordStr := form.Get("numWords")
+	numWords, _ := strconv.Atoi(numWordStr)
+
+	if numWords < 1 {
+		numWords = 1
+	}
+
+	testLength := min(len(outputWords), numWords)
+
+	for i := 0; i < testLength; i++ {
 
 		wordInfo := outputWords[i]
 
@@ -519,7 +543,7 @@ func RunTest(form url.Values) ([]WordData, []string) {
 			question += formData.form
 			question += " form"
 
-			createVerbAnswer(&outputWords[i], politeness, formData, showKanji)
+			createVerbAnswer(&outputWords[i], politeness, formData, showKanji, selectedLanguage)
 
 		} else if wordInfo.WordType == adjective {
 
@@ -528,13 +552,14 @@ func RunTest(form url.Values) ([]WordData, []string) {
 			question += formData
 			question += " form"
 
-			createAdjectiveAnswer(&outputWords[i], formData, showKanji)
+			createAdjectiveAnswer(&outputWords[i], formData, showKanji, selectedLanguage)
 		}
 
 		outputForms = append(outputForms, question)
 	}
 
-	return outputWords, outputForms
+	finalWords := outputWords[0:testLength]
+	return finalWords, outputForms
 }
 
 func WordTypeSelected(w http.ResponseWriter, r *http.Request) {

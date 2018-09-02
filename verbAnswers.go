@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"unicode/utf8"
 )
 
@@ -678,9 +679,24 @@ func createVerbWantForm(wordInfo *WordData, inputString string) {
 	}
 }
 
-func createVerbAnswer(wordInfo *WordData, politeness string, formData verbFormData, showKanji bool) {
+func createVerbAnswer(wordInfo *WordData, politeness string, formData verbFormData, showKanji bool, language string) {
 
 	wordInfo.TestAnswer = ""
+	wordInfo.AnswerLanguage = language
+
+	if language == langMix {
+		langRand := rand.Intn(2)
+		if langRand == 0 {
+			wordInfo.AnswerLanguage = langJapanese
+		} else {
+			wordInfo.AnswerLanguage = langEnglish
+		}
+	}
+
+	if wordInfo.AnswerLanguage == langEnglish {
+		wordInfo.TestAnswer = wordInfo.English
+		return
+	}
 
 	var inputString string
 	if showKanji {

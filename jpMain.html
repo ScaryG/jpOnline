@@ -138,7 +138,7 @@
             <div class="optionGridLanguage">
               <p><optionHeaderText>Language:</optionHeaderText></p>
               {{range $3}}
-                <input type="radio" name={{.Name}} value="{{.Value}}" class="regular-radio">
+                <input type="radio" name={{.Name}} value="{{.Value}}" class="regular-radio" {{if .IsChecked}} checked="true" {{end}}>
                 <label for="{{.Value}}"></label>
                 <span class="radioOptionText">{{.Text}}</span>
               {{end}}
@@ -281,23 +281,30 @@
               var wordText = document.createElement("h2");
               wordText.id = "englishText";
 
-              if (wordData[index].WordType == 0)
-              {
-                  wordText.textContent = "To ";
+              if (wordData[index].AnswerLanguage == "Japanese") {
+                if (wordData[index].WordType == 0) {
+                    wordText.textContent = "To ";
+                }
+                wordText.textContent += wordData[index].English;
+              } else {
+                wordText.textContent += wordData[index].Japanese;
               }
-
-              wordText.textContent += wordData[index].English;
+              
               parentDiv.appendChild(wordText);
 
               var formText = document.createElement("h3");
               formText.id = "formText";
 
-              var formDisplayText = formData[index];
-              if (wordData[index].WordType == 1) {
-                  formDisplayText = formDisplayText.replace("adj-", "");
+              if (wordData[index].AnswerLanguage == "Japanese") {
+                var formDisplayText = formData[index];
+                if (wordData[index].WordType == 1) {
+                    formDisplayText = formDisplayText.replace("adj-", "");
+                }
+                formText.textContent += formDisplayText;
+              } else {
+                formText.textContent = "English translation";
               }
 
-              formText.textContent += formDisplayText;
               parentDiv.appendChild(formText);
 
               var button = document.createElement("input");
@@ -324,7 +331,15 @@
 
             var wordText = document.createElement("j2");
             wordText.id = "japaneseTextAnswer";
-            wordText.textContent = wordData[index].TestAnswer;
+            wordText.textContent = "";
+
+            if (wordData[index].AnswerLanguage == "English") {
+              if (wordData[index].WordType == 0) {
+                  wordText.textContent = "To ";
+              }
+            }
+
+            wordText.textContent += wordData[index].TestAnswer;
             containerDiv.appendChild(wordText);
 
             var wordSpan0 = document.createElement("span");

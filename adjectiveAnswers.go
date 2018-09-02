@@ -1,5 +1,7 @@
 package main
 
+import "math/rand"
+
 func createPresentNegativeForm(wordInfo *WordData, inputString string) {
 
 	if wordInfo.Subtype == iAdjective {
@@ -36,9 +38,24 @@ func createTeForm(wordInfo *WordData, inputString string) {
 	}
 }
 
-func createAdjectiveAnswer(wordInfo *WordData, form string, showKanji bool) {
+func createAdjectiveAnswer(wordInfo *WordData, form string, showKanji bool, language string) {
 
 	wordInfo.TestAnswer = ""
+	wordInfo.AnswerLanguage = language
+
+	if language == langMix {
+		langRand := rand.Intn(2)
+		if langRand == 0 {
+			wordInfo.AnswerLanguage = langJapanese
+		} else {
+			wordInfo.AnswerLanguage = langEnglish
+		}
+	}
+
+	if wordInfo.AnswerLanguage == langEnglish {
+		wordInfo.TestAnswer = wordInfo.English
+		return
+	}
 
 	var inputString string
 	if showKanji {
