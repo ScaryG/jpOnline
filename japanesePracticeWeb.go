@@ -64,6 +64,8 @@ type TestVariables struct {
 	PolitenessOptionButtons    []OptionButton
 	FormOptionButtons          []OptionButton
 	AdjectiveFormOptionButtons []OptionButton
+	LanguageOptionButtons      []OptionButton
+	NumWordsOptionButton       OptionButton
 	TestButtonDisabled         bool
 	TestWords                  []WordData
 	TestForms                  []string
@@ -110,6 +112,12 @@ const (
 
 	iAdjective  = "い-adjective"
 	naAdjective = "な-adjective"
+)
+
+const (
+	langJapanese = "Japanese"
+	langEnglish  = "English"
+	langMix      = "Mix"
 )
 
 const (
@@ -272,12 +280,16 @@ func DisplayOptionButtons(w http.ResponseWriter, r *http.Request) {
 	// Display some radio buttons to the user
 	wordOptionButtons := SetupWordOptions(false, false)
 	displayOptionButtons := SetupDisplayOptions("kana")
+	languageOptionButtons := SetupLanguageOptions(langJapanese)
+	numWordsOptionButton := SetupNumWordOption("50")
 
 	MyTestVariables := TestVariables{
-		PageTitle:            Title,
-		DisplayOptionButtons: displayOptionButtons,
-		WordOptionButtons:    wordOptionButtons,
-		TestButtonDisabled:   true,
+		PageTitle:             Title,
+		DisplayOptionButtons:  displayOptionButtons,
+		WordOptionButtons:     wordOptionButtons,
+		NumWordsOptionButton:  numWordsOptionButton,
+		LanguageOptionButtons: languageOptionButtons,
+		TestButtonDisabled:    true,
 	}
 
 	t, err := template.ParseFiles("jpMain.html") //parse the html file homepage.html
@@ -313,6 +325,24 @@ func SetupWordOptions(hasVerbs bool, hasAdjectives bool) []OptionButton {
 	}
 
 	return wordOptionButtons
+}
+
+func SetupLanguageOptions(currentLanguage string) []OptionButton {
+
+	languageOptionButtons := []OptionButton{
+		OptionButton{"languageRadio", langJapanese, false, currentLanguage == langJapanese, langJapanese},
+		OptionButton{"languageRadio", langEnglish, false, currentLanguage == langEnglish, langEnglish},
+		OptionButton{"languageRadio", langMix, false, currentLanguage == langMix, langMix},
+	}
+
+	return languageOptionButtons
+}
+
+func SetupNumWordOption(numWords string) OptionButton {
+
+	numWordOption := OptionButton{"numWords", numWords, false, false, numWords}
+
+	return numWordOption
 }
 
 func SetupVerbOptions(politenessData []string, formData []string) ([]OptionButton, []OptionButton) {
@@ -566,6 +596,12 @@ func WordTypeSelected(w http.ResponseWriter, r *http.Request) {
 
 	displayOptionButtons := SetupDisplayOptions(checkedRadio)
 
+	numWordStr := r.Form.Get("numWords")
+	numWordsOptionButton := SetupNumWordOption(numWordStr)
+
+	selectedLanguage := r.Form.Get("languageRadio")
+	languageOptionButtons := SetupLanguageOptions(selectedLanguage)
+
 	var MyTestVariables TestVariables
 
 	if !hasVerbs && !hasAdjectives {
@@ -575,6 +611,8 @@ func WordTypeSelected(w http.ResponseWriter, r *http.Request) {
 	MyTestVariables.PageTitle = Title
 	MyTestVariables.DisplayOptionButtons = displayOptionButtons
 	MyTestVariables.WordOptionButtons = wordOptionButtons
+	MyTestVariables.NumWordsOptionButton = numWordsOptionButton
+	MyTestVariables.LanguageOptionButtons = languageOptionButtons
 
 	if hasVerbs {
 		MyTestVariables.PolitenessOptionButtons = politenessOptionButtons

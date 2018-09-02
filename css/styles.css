@@ -23,11 +23,12 @@ optionHeaderText { font-size: 12pt; font-weight: bold; }
 
 .radioOptionText { font-size: 12pt; padding-right: 10px }
 .optionText { font-size: 12pt; padding-right: 10px; }
+.optionTextBox { font-size: 12pt; padding-right: 10px; width: 3em; }
 
-.optionSpan { background-color: #ffffff; display: inline-block; position: relative; margin-top: 2px }
+.optionSpan { background-color: #ffffff; display: inline-block; position: relative; margin-top: 2px; margin-right: 0px; }
 
 .optionGridContainer { display: grid; margin-left: calc(10% - 8px); margin-right: calc(9% - 3px); grid-gap: 1px; grid-template-columns: 33% 33% 33%; padding: 0px; background-color: #efeff6; position: relative !important }
-.optionGridDisplay { grid-column-start: 1; grid-column-end: 2; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static }
+.optionGridDisplay  { grid-column-start: 1; grid-column-end: 2; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static }
 .optionGridNumWords { grid-column-start: 2; grid-column-end: 3; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static}
 .optionGridLanguage { grid-column-start: 3; grid-column-end: 4; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static}
 .optionGridWordType { grid-column-start: 1; grid-column-end: 4; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static}
@@ -59,6 +60,7 @@ optionHeaderText { font-size: 12pt; font-weight: bold; }
 
   .radioOptionText { font-size: 28pt; padding-right: 10px }
   .optionText { font-size: 28pt; padding-right: 20px; padding-top: 3px }
+  .optionTextBox { font-size: 28pt; padding-right: 10px; width: 2em; }
 
   h2 { font-size: 48pt; font-weight: bold; text-align: center; margin-bottom: 4px; margin-top: 16px; position: relative; top: 0px }
   h3 { font-size: 28pt; font-weight: normal; text-align: center; margin-top: 0px; padding-top: 0px; position: relative; top: 0px }
@@ -76,7 +78,7 @@ optionHeaderText { font-size: 12pt; font-weight: bold; }
   .optionBox { width: 90%; background: white; display: inline-block; text-align: left; padding: 16px; padding-top: 0px; padding-bottom:24px; border-style:solid; border-color: #ebebeb; border-width: 1px }
   .button1 { width: 50%; height: 150px; background:radial-gradient(white, lightyellow); font-size: 32pt; font-weight: bold; border-radius: 40px;  }
   .button2 { width: 50%; height: 100px; position: absolute; top: 450px; left: 0; right: 0; margin: auto; font-size: 32pt; font-weight: bold; background: linear-gradient(#fafaff, #ccccff); border-radius: 40px; }
-  .optionSpan { background-color: #ffffff; display: inline-block; position: relative; margin-top: 8px }
+  .optionSpan { background-color: #ffffff; display: inline-block; position: relative; margin-top: 8px; margin-right: 8px; }
 
   .optionGridContainer { display: grid; margin-left: calc(5% - 12px); margin-right: calc(5% - 11px); grid-gap: 1px; grid-template-columns: 50% 50%; padding: 0px; background-color: #efeff6; position: relative !important }
   .optionGridDisplay  { grid-column-start: 1; grid-column-end: 2; grid-row: 1; background: white; text-align: left; padding: 16px; padding-top: 0px; position: static }
@@ -135,7 +137,6 @@ optionHeaderText { font-size: 12pt; font-weight: bold; }
     position: absolute;
     top: 2px;
     left: 6px;
-    right: 16px;
     color: #0091ff;
   }
 

@@ -116,10 +116,10 @@
 
       <div class="optionGridParent">
         <div class="optionGridContainer">
-          {{with $4:=.DisplayOptionButtons}}
+          {{with $1:=.DisplayOptionButtons}}
             <div class="optionGridDisplay">
               <p><optionHeaderText>Display:</optionHeaderText></p>
-              {{range $4}}
+              {{range $1}}
                 <input type="radio" name={{.Name}} value="{{.Value}}" id={{.Value}} class="regular-radio" {{if .IsChecked}} checked="true" {{end}}>
                 <label for="{{.Value}}"></label>
                 <span class="radioOptionText">{{.Text}}</span>
@@ -127,30 +127,30 @@
             </div>
           {{end}}
 
-          <div class="optionGridNumWords">
-            <p><optionHeaderText>Test Length (Words):</optionHeaderText></p>
-            <input type="text" name="numWords" value="50" class="optionText">
-          </div>
+          {{with $2:=.NumWordsOptionButton}}
+            <div class="optionGridNumWords">
+              <p><optionHeaderText>Test Length (Words):</optionHeaderText></p>
+              <input type="text" name={{.Name}} value="{{.Value}}" class="optionTextBox">
+            </div>
+          {{end}}
   
-          <div class="optionGridLanguage">
-            <p><optionHeaderText>Language:</optionHeaderText></p>
-            <input type="radio" name="language" value="Japanese" class="regular-radio">
-            <label for="Japanese"></label>
-            <span class="radioOptionText">Japanese</span>
-            <input type="radio" name="language" value="English" class="regular-radio">
-            <label for="English"></label>
-            <span class="radioOptionText">English</span>
-            <input type="radio" name="language" value="Mix" class="regular-radio">
-            <label for="Mix"></label>
-            <span class="radioOptionText">Mix</span>
-          </div>
+          {{with $3:=.LanguageOptionButtons}}
+            <div class="optionGridLanguage">
+              <p><optionHeaderText>Language:</optionHeaderText></p>
+              {{range $3}}
+                <input type="radio" name={{.Name}} value="{{.Value}}" class="regular-radio">
+                <label for="{{.Value}}"></label>
+                <span class="radioOptionText">{{.Text}}</span>
+              {{end}}
+            </div>
+          {{end}}
 
-          {{with $1:=.WordOptionButtons}}
+          {{with $4:=.WordOptionButtons}}
             <div class="optionGridWordType">
               <p><optionHeaderText>Word Types:</optionHeaderText></p>
               <input type="button" name="uncheckAllWordTypes" value="Uncheck All" id="uncheckAllButton">
               <input type="button" name="checkAllWordTypes" value="Check All" id="checkAllButton">
-              {{range $1}}
+              {{range $4}}
                 <input type="checkbox" name={{.Name}} value={{.Value}} id="cb{{.Name}}" class="regular-checkbox" {{if .IsDisabled}} disabled=true {{end}} {{if .IsChecked}} checked{{end}}> 
                 <label for="cb{{.Name}}"></label>
                 <span class="optionText">{{.Text}}</span>
@@ -160,12 +160,12 @@
         </div>
       </div>
 
-      {{with $2:=.PolitenessOptionButtons}}
+      {{with $5:=.PolitenessOptionButtons}}
         <div class="optionBoxParent"><div class="optionBox">
             <p><optionHeaderText>Verb Politeness Level:</optionHeaderText></p>
             <input type="button" name="uncheckAllVerbPoliteness" value="Uncheck All" id="uncheckAllButton">
             <input type="button" name="checkAllVerbPoliteness" value="Check All" id="checkAllButton">
-            {{range $2}}
+            {{range $5}}
               <input type="checkbox" name={{.Name}} value={{.Value}} id="cb{{.Name}}" class="regular-checkbox" {{if .IsDisabled}} disabled=true {{end}} {{if .IsChecked}} checked{{end}}>
               <label for="cb{{.Name}}"></label>
               <span class="optionText">{{.Text}}</span>
@@ -174,13 +174,13 @@
         </div>
       {{end}}
 
-      {{with $3:=.FormOptionButtons}}
+      {{with $6:=.FormOptionButtons}}
         <div class="optionBoxParent"><div class="optionBox">
             <p><optionHeaderText>Verb Form:</optionHeaderText></p>
             <input type="button" name="uncheckAllVerbForms" value="Uncheck All" id="uncheckAllButton">
             <input type="button" name="checkAllVerbForms" value="Check All" id="checkAllButton">
             <br>
-            {{range $3}}
+            {{range $6}}
               <span class="optionSpan">
                 <input type="checkbox" name={{.Name}} value={{.Value}} id="cb{{.Name}}" class="regular-checkbox" {{if .IsDisabled}} disabled=true {{end}} {{if .IsChecked}} checked{{end}}>
                 <label for="cb{{.Name}}"></label>
@@ -191,13 +191,13 @@
         </div>
       {{end}}
 
-      {{with $5:=.AdjectiveFormOptionButtons}}
+      {{with $7:=.AdjectiveFormOptionButtons}}
         <div class="optionBoxParent"><div class="optionBox">
             <p><optionHeaderText>Adjective Form:</optionHeaderText></p>
             <input type="button" name="uncheckAllAdjectiveForms" value="Uncheck All" id="uncheckAllButton">
             <input type="button" name="checkAllAdjectiveForms" value="Check All" id="checkAllButton">
             <br>
-            {{range $5}}
+            {{range $7}}
               <span class="optionSpan">
                 <input type="checkbox" name={{.Name}} value={{.Value}} id="cb{{.Name}}" class="regular-checkbox" {{if .IsDisabled}} disabled=true {{end}} {{if .IsChecked}} checked{{end}}>
                 <label for="cb{{.Name}}"></label>
