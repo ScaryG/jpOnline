@@ -113,6 +113,7 @@ const (
 
 	iAdjective  = "い-adjective"
 	naAdjective = "な-adjective"
+	iiAdjective = "いい-adjective"
 )
 
 const (

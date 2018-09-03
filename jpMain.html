@@ -138,7 +138,7 @@
             <div class="optionGridLanguage">
               <p><optionHeaderText>Language:</optionHeaderText></p>
               {{range $3}}
-                <input type="radio" name={{.Name}} value="{{.Value}}" class="regular-radio" {{if .IsChecked}} checked="true" {{end}}>
+                <input type="radio" name={{.Name}} value="{{.Value}}" id={{.Value}} class="regular-radio" {{if .IsChecked}} checked="true" {{end}}>
                 <label for="{{.Value}}"></label>
                 <span class="radioOptionText">{{.Text}}</span>
               {{end}}

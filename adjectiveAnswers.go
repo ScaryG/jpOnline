@@ -6,8 +6,10 @@ func createPresentNegativeForm(wordInfo *WordData, inputString string) {
 
 	if wordInfo.Subtype == iAdjective {
 		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "くない")
-	} else {
+	} else if wordInfo.Subtype == naAdjective {
 		addVerbSuffix(inputString, &wordInfo.TestAnswer, 0, "じゃない")
+	} else {
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 2, "よくない")
 	}
 }
 
@@ -15,8 +17,10 @@ func createPastForm(wordInfo *WordData, inputString string) {
 
 	if wordInfo.Subtype == iAdjective {
 		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "かった")
-	} else {
+	} else if wordInfo.Subtype == naAdjective {
 		addVerbSuffix(inputString, &wordInfo.TestAnswer, 0, "でした")
+	} else {
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 2, "よかった")
 	}
 }
 
@@ -24,8 +28,10 @@ func createPastNegativeForm(wordInfo *WordData, inputString string) {
 
 	if wordInfo.Subtype == iAdjective {
 		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "くなかった")
-	} else {
+	} else if wordInfo.Subtype == naAdjective {
 		addVerbSuffix(inputString, &wordInfo.TestAnswer, 0, "じゃなかった")
+	} else {
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 2, "よくなかった")
 	}
 }
 
@@ -33,8 +39,10 @@ func createTeForm(wordInfo *WordData, inputString string) {
 
 	if wordInfo.Subtype == iAdjective {
 		addVerbSuffix(inputString, &wordInfo.TestAnswer, 1, "くて")
-	} else {
+	} else if wordInfo.Subtype == naAdjective {
 		addVerbSuffix(inputString, &wordInfo.TestAnswer, 0, "で")
+	} else {
+		addVerbSuffix(inputString, &wordInfo.TestAnswer, 2, "よくて")
 	}
 }
 
